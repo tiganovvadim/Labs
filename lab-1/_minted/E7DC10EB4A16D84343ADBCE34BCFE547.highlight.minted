@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Очистка предыдущих настроек}
+sudo\PYG{+w}{ }ip\PYG{+w}{ }addr\PYG{+w}{ }flush\PYG{+w}{ }dev\PYG{+w}{ }enp0s3
+sudo\PYG{+w}{ }ip\PYG{+w}{ }route\PYG{+w}{ }flush\PYG{+w}{ }dev\PYG{+w}{ }enp0s3
+
+\PYG{c+c1}{\PYGZsh{} Получение адреса через DHCP}
+sudo\PYG{+w}{ }dhclient\PYG{+w}{ }enp0s3
+\end{MintedVerbatim}

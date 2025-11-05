@@ -1,0 +1,129 @@
+\documentclass[6pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{xcolor}
+
+\geometry{margin=0.5cm}
+\setlength{\columnsep}{0.3cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{lightgray}{gray}{0.74}
+\definecolor{darkergray}{gray}{0.62}
+
+\renewcommand{\baselinestretch}{0.85}
+
+\begin{document}
+\color{lightgray}
+\small
+
+\begin{multicols}{3}
+
+{\color[gray]{0.77}
+\textbf{1. Событие и аксиомы}
+$\Omega$ — множество исходов. $A \subset \Omega$ — событие. Операции: $A \cup B$ (ИЛИ), $A \cap B$ (И), $\bar{A}$ (НЕ), $A \setminus B$. Несовместные: $A \cap B = \emptyset$. Аксиомы Колмогорова: (1) $P(A) \geq 0$; (2) $P(\Omega) = 1$; (3) для несовместных $P(A_1 \cup A_2 \cup \ldots) = \sum P(A_i)$. Свойства: $P(\emptyset) = 0$, $P(\bar{A}) = 1-P(A)$, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Классическая: $P(A) = \frac{n(A)}{n(\Omega)}$. Геометрическая: $P(A) = \frac{\mu(A)}{\mu(\Omega)}$.
+
+\vspace{0.3cm}
+
+\textbf{2. Случайная величина (СВ)}
+$\xi: \Omega \to \mathbb{R}$ — СВ. Функция распределения $F(x) = P(\xi \leq x)$. Свойства: (1) $F$ неубывает; (2) $F(-\infty) = 0$, $F(+\infty) = 1$; (3) непрерывна справа. $F$ однозначно задаёт распределение.
+
+\vspace{0.3cm}
+
+\textbf{3. Дискретные распределения}
+$\xi$ принимает значения $x_1, x_2, \ldots$ с вероятностями $p_i = P(\xi = x_i)$, где $\sum p_i = 1$. Ряд: таблица $(x_i, p_i)$. Функция: $F(x) = \sum_{x_i \leq x} p_i$ (ступенчатая). Пример: кубик: $\{1,\ldots,6\}$, $p_i = \frac{1}{6}$.
+
+\vspace{0.3cm}
+
+\textbf{4. Непрерывные распределения}
+Плотность $f(x) \geq 0$: $F(x) = \int_{-\infty}^x f(t)dt$. Свойства: $\int_{-\infty}^{+\infty} f(x)dx = 1$; $P(a < \xi \leq b) = \int_a^b f(x)dx = F(b)-F(a)$. Если $F'$ существует: $f(x) = F'(x)$.
+
+\vspace{0.3cm}
+
+\textbf{5. Моменты}
+\textit{Начальный} момент $k$: $M_k = E\xi^k = \int x^k dF(x)$. \textit{Центральный} момент $k$: $\mu_k = E(\xi - E\xi)^k$. Математическое ожидание: $M(X) = E\xi = \int x dF(x)$ (1-й начальный). Дисперсия: $D(X) = \text{Var}\,\xi = E(\xi - E\xi)^2 = E\xi^2 - (E\xi)^2$ (2-й центральный). Среднее квадратическое отклонение: $\sigma = \sqrt{D(X)}$. Свойства: $E(a\xi + b) = aE\xi + b$; $E(\xi + \eta) = E\xi + E\eta$; $\text{Var}(a\xi + b) = a^2\text{Var}\,\xi$; $\text{Var}(\xi + \eta) = \text{Var}\,\xi + \text{Var}\,\eta + 2\text{Cov}(\xi, \eta)$.
+
+\vspace{0.3cm}
+
+\textbf{6. Дискретные распределения}
+\textit{Бернулли} $\text{Bern}(p)$: $P(1) = p$, $P(0) = 1-p$; $E\xi = p$, $D\xi = p(1-p)$. \textit{Биномиальное} $\text{Bin}(n,p)$: $P(k) = \binom{n}{k}p^k(1-p)^{n-k}$, $k = 0,\ldots,n$; $E\xi = np$, $D\xi = np(1-p)$. \textit{Пуассон} $\text{Pois}(\lambda)$: $P(k) = \frac{\lambda^k e^{-\lambda}}{k!}$; $E\xi = \lambda$, $D\xi = \lambda$. \textit{Геометрическое} $\text{Geom}(p)$: $P(k) = (1-p)^{k-1}p$, $k \geq 1$; $E\xi = \frac{1}{p}$, $D\xi = \frac{1-p}{p^2}$. \textit{Гипергеометрическое} $\text{HG}(N, M, n)$: $P(k) = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}$, где $N$ — всего, $M$ — нужных, $n$ — выборка; $E\xi = \frac{nM}{N}$.
+}
+
+\columnbreak
+
+{\color[gray]{0.62}
+\textbf{7. Непрерывные распределения}
+\textit{Равномерное} $U[a,b]$: $f(x) = \frac{1}{b-a}$ на $[a,b]$; $E\xi = \frac{a+b}{2}$, $D\xi = \frac{(b-a)^2}{12}$. \textit{Экспоненциальное} $\text{Exp}(\lambda)$: $f(x) = \lambda e^{-\lambda x}$, $x > 0$; $E\xi = \frac{1}{\lambda}$, $D\xi = \frac{1}{\lambda^2}$. \textit{Нормальное} $\text{N}(\mu, \sigma^2)$: $f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$; $E\xi = \mu$, $D\xi = \sigma^2$. Стандартное $\text{N}(0,1)$: $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$.
+
+\vspace{0.3cm}
+
+\textbf{8. Функция Лапласа}
+$\Phi(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-t^2/2}dt$ — функция стандартного нормального. \textit{Зачем:} вычисляем вероятности для нормальных СВ через таблицу. Свойства: $\Phi(0) = 0.5$; $\Phi(-x) = 1 - \Phi(x)$; возрастает; таблица значений. Важные: $\Phi(1.96) \approx 0.975$, $\Phi(2.576) \approx 0.995$. Для $\xi \sim \text{N}(\mu, \sigma^2)$: $P(a < \xi \leq b) = \Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)$. Стандартизация: $Z = \frac{\xi - \mu}{\sigma} \sim \text{N}(0,1)$.
+
+\vspace{0.3cm}
+
+\textbf{9. Ковариация и корреляция}
+Ковариация: $\text{Cov}(\xi, \eta) = E[(\xi - E\xi)(\eta - E\eta)] = E(\xi\eta) - E\xi \cdot E\eta$. Коэффициент корреляции: $\rho = \frac{\text{Cov}(\xi, \eta)}{\sigma_\xi \sigma_\eta}$, где $\sigma_\xi = \sqrt{D\xi}$. Свойства: $\text{Cov}(\xi, \xi) = D\xi$; симметрия $\text{Cov}(\xi, \eta) = \text{Cov}(\eta, \xi)$; билинейность $\text{Cov}(a\xi + b, \eta) = a\text{Cov}(\xi, \eta)$; для независимых $\text{Cov}(\xi, \eta) = 0$ (обратное НЕ верно!); $|\rho| \leq 1$; $\rho = \pm 1 \iff \eta = a\xi + b$ (линейная связь). Интерпретация: $\rho$ измеряет силу линейной зависимости; $\rho = 0$ — некоррелированность (не означает независимость); $\rho > 0$ — положительная связь; $\rho < 0$ — отрицательная связь; чем ближе $|\rho|$ к $1$, тем сильнее линейная связь.
+}
+
+\end{multicols}
+
+\vspace{0.8cm}
+
+\begin{multicols}{3}
+
+{\color[gray]{0.77}
+\textbf{1. Событие и аксиомы}
+$\Omega$ — множество исходов. $A \subset \Omega$ — событие. Операции: $A \cup B$ (ИЛИ), $A \cap B$ (И), $\bar{A}$ (НЕ), $A \setminus B$. Несовместные: $A \cap B = \emptyset$. Аксиомы Колмогорова: (1) $P(A) \geq 0$; (2) $P(\Omega) = 1$; (3) для несовместных $P(A_1 \cup A_2 \cup \ldots) = \sum P(A_i)$. Свойства: $P(\emptyset) = 0$, $P(\bar{A}) = 1-P(A)$, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$. Классическая: $P(A) = \frac{n(A)}{n(\Omega)}$. Геометрическая: $P(A) = \frac{\mu(A)}{\mu(\Omega)}$.
+
+\vspace{0.3cm}
+
+\textbf{2. Случайная величина (СВ)}
+$\xi: \Omega \to \mathbb{R}$ — СВ. Функция распределения $F(x) = P(\xi \leq x)$. Свойства: (1) $F$ неубывает; (2) $F(-\infty) = 0$, $F(+\infty) = 1$; (3) непрерывна справа. $F$ однозначно задаёт распределение.
+
+\vspace{0.3cm}
+
+\textbf{3. Дискретные распределения}
+$\xi$ принимает значения $x_1, x_2, \ldots$ с вероятностями $p_i = P(\xi = x_i)$, где $\sum p_i = 1$. Ряд: таблица $(x_i, p_i)$. Функция: $F(x) = \sum_{x_i \leq x} p_i$ (ступенчатая). Пример: кубик: $\{1,\ldots,6\}$, $p_i = \frac{1}{6}$.
+
+\vspace{0.3cm}
+
+\textbf{4. Непрерывные распределения}
+Плотность $f(x) \geq 0$: $F(x) = \int_{-\infty}^x f(t)dt$. Свойства: $\int_{-\infty}^{+\infty} f(x)dx = 1$; $P(a < \xi \leq b) = \int_a^b f(x)dx = F(b)-F(a)$. Если $F'$ существует: $f(x) = F'(x)$.
+
+\vspace{0.3cm}
+
+\textbf{5. Моменты}
+\textit{Начальный} момент $k$: $M_k = E\xi^k = \int x^k dF(x)$. \textit{Центральный} момент $k$: $\mu_k = E(\xi - E\xi)^k$. Математическое ожидание: $M(X) = E\xi = \int x dF(x)$ (1-й начальный). Дисперсия: $D(X) = \text{Var}\,\xi = E(\xi - E\xi)^2 = E\xi^2 - (E\xi)^2$ (2-й центральный). Среднее квадратическое отклонение: $\sigma = \sqrt{D(X)}$. Свойства: $E(a\xi + b) = aE\xi + b$; $E(\xi + \eta) = E\xi + E\eta$; $\text{Var}(a\xi + b) = a^2\text{Var}\,\xi$; $\text{Var}(\xi + \eta) = \text{Var}\,\xi + \text{Var}\,\eta + 2\text{Cov}(\xi, \eta)$.
+
+\vspace{0.3cm}
+
+\textbf{6. Дискретные распределения}
+\textit{Бернулли} $\text{Bern}(p)$: $P(1) = p$, $P(0) = 1-p$; $E\xi = p$, $D\xi = p(1-p)$. \textit{Биномиальное} $\text{Bin}(n,p)$: $P(k) = \binom{n}{k}p^k(1-p)^{n-k}$, $k = 0,\ldots,n$; $E\xi = np$, $D\xi = np(1-p)$. \textit{Пуассон} $\text{Pois}(\lambda)$: $P(k) = \frac{\lambda^k e^{-\lambda}}{k!}$; $E\xi = \lambda$, $D\xi = \lambda$. \textit{Геометрическое} $\text{Geom}(p)$: $P(k) = (1-p)^{k-1}p$, $k \geq 1$; $E\xi = \frac{1}{p}$, $D\xi = \frac{1-p}{p^2}$. \textit{Гипергеометрическое} $\text{HG}(N, M, n)$: $P(k) = \frac{\binom{M}{k}\binom{N-M}{n-k}}{\binom{N}{n}}$, где $N$ — всего, $M$ — нужных, $n$ — выборка; $E\xi = \frac{nM}{N}$.
+}
+
+\columnbreak
+
+{\color[gray]{0.62}
+\textbf{7. Непрерывные распределения}
+\textit{Равномерное} $U[a,b]$: $f(x) = \frac{1}{b-a}$ на $[a,b]$; $E\xi = \frac{a+b}{2}$, $D\xi = \frac{(b-a)^2}{12}$. \textit{Экспоненциальное} $\text{Exp}(\lambda)$: $f(x) = \lambda e^{-\lambda x}$, $x > 0$; $E\xi = \frac{1}{\lambda}$, $D\xi = \frac{1}{\lambda^2}$. \textit{Нормальное} $\text{N}(\mu, \sigma^2)$: $f(x) = \frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$; $E\xi = \mu$, $D\xi = \sigma^2$. Стандартное $\text{N}(0,1)$: $f(x) = \frac{1}{\sqrt{2\pi}}e^{-x^2/2}$.
+
+\vspace{0.3cm}
+
+\textbf{8. Функция Лапласа}
+$\Phi(x) = \int_{-\infty}^x \frac{1}{\sqrt{2\pi}}e^{-t^2/2}dt$ — функция стандартного нормального. \textit{Зачем:} вычисляем вероятности для нормальных СВ через таблицу. Свойства: $\Phi(0) = 0.5$; $\Phi(-x) = 1 - \Phi(x)$; возрастает; таблица значений. Важные: $\Phi(1.96) \approx 0.975$, $\Phi(2.576) \approx 0.995$. Для $\xi \sim \text{N}(\mu, \sigma^2)$: $P(a < \xi \leq b) = \Phi\left(\frac{b-\mu}{\sigma}\right) - \Phi\left(\frac{a-\mu}{\sigma}\right)$. Стандартизация: $Z = \frac{\xi - \mu}{\sigma} \sim \text{N}(0,1)$.
+
+\vspace{0.3cm}
+
+\textbf{9. Ковариация и корреляция}
+Ковариация: $\text{Cov}(\xi, \eta) = E[(\xi - E\xi)(\eta - E\eta)] = E(\xi\eta) - E\xi \cdot E\eta$. Коэффициент корреляции: $\rho = \frac{\text{Cov}(\xi, \eta)}{\sigma_\xi \sigma_\eta}$, где $\sigma_\xi = \sqrt{D\xi}$. Свойства: $\text{Cov}(\xi, \xi) = D\xi$; симметрия $\text{Cov}(\xi, \eta) = \text{Cov}(\eta, \xi)$; билинейность $\text{Cov}(a\xi + b, \eta) = a\text{Cov}(\xi, \eta)$; для независимых $\text{Cov}(\xi, \eta) = 0$ (обратное НЕ верно!); $|\rho| \leq 1$; $\rho = \pm 1 \iff \eta = a\xi + b$ (линейная связь). Интерпретация: $\rho$ измеряет силу линейной зависимости; $\rho = 0$ — некоррелированность (не означает независимость); $\rho > 0$ — положительная связь; $\rho < 0$ — отрицательная связь; чем ближе $|\rho|$ к $1$, тем сильнее линейная связь.
+}
+
+\end{multicols}
+
+\end{document}

@@ -1,0 +1,13 @@
+\babel@toc {russian}{}\relax 
+\contentsline {section}{\numberline {1}Цель работы}{2}{section.1}%
+\contentsline {section}{\numberline {2}Артефакты выполнения}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Часть 1. Настройка инфраструктуры}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Часть 2. Диагностика соединения}{2}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Часть 3. Работа с Wireshark}{2}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Часть 4. Определение маршрута прохождения пакета}{4}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Часть 5. Текущий мониторинг сетевых интерфейсов}{4}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Часть 6. Диагностика работы приложений через сеть}{5}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Ответы на вопросы и задания}{7}{section.3}%
+\contentsline {section}{\numberline {4}Использование GAI}{9}{section.4}%
+\contentsline {section}{\numberline {5}Рефлексия}{9}{section.5}%
+\contentsline {section}{\numberline {6}Список использованных источников}{10}{section.6}%

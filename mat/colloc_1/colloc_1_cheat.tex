@@ -1,0 +1,232 @@
+\documentclass[6pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{xcolor}
+
+\geometry{margin=0.5cm}
+\setlength{\columnsep}{0.3cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{lightgray}{gray}{0.74}
+
+\renewcommand{\baselinestretch}{0.85}
+
+\begin{document}
+\color{lightgray}
+\small
+
+\begin{multicols}{3}
+
+{\color[gray]{0.77}
+\textbf{1. Топология}
+$\tau$ — топология на $X$: (1) $\emptyset,X\in\tau$; (2) $\bigcup$-любое$\in\tau$; (3) $\bigcap$-конечное$\in\tau$. Мн-ва из $\tau$ — \textbf{открытые}. $F$ \textbf{замкнуто} $\iff X\setminus F$ откр. \textbf{База} $\mathcal{B}$: $\forall G\in\tau=\bigcup$ элементов $\mathcal{B}$. \textbf{Окр-ть} $U(x)$ — откр. $\ni x$. Базы $\mathbb{R}^2$: $\Sigma^2:(x-a)^2+(y-b)^2<r^2$ (круги); $\Sigma^\infty:\max(|x-a|,|y-b|)<r$ (квадраты); $\Sigma^1:|x-a|+|y-b|<r$ (ромбы). Все порождают одну топологию на $\mathbb{R}^2$.
+
+\vspace{0.5cm}
+
+\textbf{2. Метрика}
+$\rho:X\times X\to\mathbb{R}^+$: (1) $\rho(x,y)=0\iff x=y$; (2) $\rho(x,y)=\rho(y,x)$; (3) $\rho(x,y)\le\rho(x,z)+\rho(z,y)$.
+
+\textbf{3. Норма}
+$\|x\|:X\to\mathbb{R}^+$: (1) $\|x\|=0\iff x=0$; (2) $\|\alpha x\|=|\alpha|\|x\|$; (3) $\|x+y\|\le\|x\|+\|y\|$ (нер-во треуг.). Норма $\Rightarrow$ метрика: $\rho(x,y)=\|x-y\|$. Примеры: $\|x\|_1=\sum|x_i|$, $\|x\|_2=\sqrt{\sum x_i^2}$, $\|x\|_\infty=\max|x_i|$, $\|x\|_p=(\sum|x_i|^p)^{1/p}$.
+
+\vspace{0.5cm}
+
+\textbf{4. Неравенство Коши-Буняковского}
+$\langle x,y\rangle^2\le\langle x,x\rangle\cdot\langle y,y\rangle$ или $|\langle x,y\rangle|\le\|x\|\cdot\|y\|$. Для $\mathbb{R}^n$: $(\sum x_ky_k)^2\le(\sum x_k^2)(\sum y_k^2)$. Док-во: рассм. $\langle x-ty,x-ty\rangle\ge 0$ для всех $t$, это квадр. трёхчлен по $t$, дискриминант $\le 0$.
+
+\textbf{5. Неравенство Юнга}
+$a,b>0$, $\frac{1}{p}+\frac{1}{q}=1$: $ab\le\frac{a^p}{p}+\frac{b^q}{q}$
+
+\textbf{6. Неравенство Гёльдера}
+$\frac{1}{p}+\frac{1}{q}=1$, $p,q>1$: $\sum x_ky_k\le(\sum x_k^p)^{1/p}(\sum y_k^q)^{1/q}$ или $\|xy\|_1\le\|x\|_p\|y\|_q$. Док-во: нормируем $x,y$, применяем Юнга к $x_ky_k$, суммируем. Частный случай при $p=q=2$ — КБШ.
+
+\vspace{0.5cm}
+
+\textbf{7. Неравенство Минковского}
+$p\ge 1$: $\|x+y\|_p\le\|x\|_p+\|y\|_p$, т.е. $(\sum(x_k+y_k)^p)^{1/p}\le(\sum x_k^p)^{1/p}+(\sum y_k^p)^{1/p}$. Это нер-во треуг. для нормы $\|\cdot\|_p$. Док-во через Гёльдера.
+
+\textbf{8. Классификация точек}
+$\tilde{U}(x)=U(x)\setminus\{x\}$. \textbf{Внутр.:} $\exists U(x)\subset A$. \textbf{Внешн.:} $\exists U(x):U(x)\cap A=\emptyset$. \textbf{Гранич.:} $\forall U(x):U(x)\cap A\ne\emptyset\wedge U(x)\cap(X\setminus A)\ne\emptyset$. \textbf{Пред.:} $\forall U(x):\tilde{U}(x)\cap A\ne\emptyset$. \textbf{Изол.:} $\exists U(x):U(x)\cap A=\{x\}$. $\overline{A}=A\cup A'$.
+
+\vspace{0.5cm}
+
+\textbf{9. Компакт}
+$K$ — компакт: из любого покрытия откр. мн-вами можно выделить конечное. \textbf{Лемма:} брус $\prod[a_i,b_i]$ — компакт. Док-во: от противного, делим пополам по каждой координате, строим вложенные брусья $P_1\supset P_2\supset\ldots$, $d(P_k)\to 0$, $\bigcap P_k=\{\xi\}$. $\xi$ должна быть в конечном покрытии — противоречие.
+
+\textbf{10. Диаметр}
+$d(E)=\sup_{x,y\in E}\rho(x,y)$. Огранич.: $d(E)<\infty$.
+
+\textbf{11. Леммы о компактах}
+(1) Компакт замкнут и ограничен. (2) Замкн. подмн-во компакта — компакт. (3) Беск. подмн-во компакта имеет пред. точку $\in$ компакту.
+
+\vspace{0.5cm}
+
+\textbf{12. Критерий компактности}
+$K\subset\mathbb{R}^n$ — компакт $\iff$ $K$ замкнуто и ограничено.
+
+\textbf{13. Предел по базе}
+$\lim_{\mathbb{B}}f(x)=A:=\forall V(A)\exists B\in\mathbb{B}~f(B)\subset V(A)$
+$\varepsilon$-$\delta$: $\forall\varepsilon>0\exists\delta>0\forall x~0<|x-a|<\delta\Rightarrow|f(x)-A|<\varepsilon$
+
+\textbf{14. Фундаментальная посл-ть}
+$\{x_n\}$ фундам.: $\forall\varepsilon>0\exists N\forall n,m>N~\rho(x_n,x_m)<\varepsilon$. \textbf{Полное МП:} всякая фундам. посл-ть сходится. Примеры полных: $\mathbb{R}^n$ (с любой $\|\cdot\|_p$), $C[a,b]$ (с $\|f\|_\infty=\max|f|$), $\ell^p$. \textbf{Критерий Коши:} $\{x_n\}$ сходится $\iff$ $\{x_n\}$ фундам. (в полном пр-ве).
+
+\vspace{0.5cm}
+
+\textbf{15. Колебание}
+$\omega(f,E)=\sup_{x,y\in E}\rho(f(x),f(y))$
+
+\textbf{16. Критерий Коши}
+$\exists\lim_{\mathbb{B}}f(x)\iff\forall\varepsilon>0\exists B\in\mathbb{B}:\omega(f,B)<\varepsilon$
+
+\textbf{17. Предел композиции}
+$\lim_{\mathbb{B}_X}(g\circ f)(x)=\lim_{\mathbb{B}_Y}g(y)$
+
+\vspace{0.5cm}
+
+\textbf{18. Повторные пределы}
+$\lim_{x\to a}\lim_{y\to b}f(x,y)$ и $\lim_{y\to b}\lim_{x\to a}f(x,y)$. Их равенство $\not\Rightarrow$ $\exists\lim_{(x,y)\to(a,b)}f(x,y)$.
+
+\textbf{19. Непрерывность}
+$f$ непр. в $a$: $\forall V(f(a))\exists U(a)~f(U(a))\subset V(f(a))$. Экв.: (1) $\lim_{x\to a}f(x)=f(a)$; (2) Гейне: $x_n\to a\Rightarrow f(x_n)\to f(a)$; (3) $\forall G$ откр. $f^{-1}(G)$ откр.
+
+\vspace{0.5cm}
+
+\textbf{20. Локальные св-ва}
+(1) Лок. огранич.: $\exists U(a):f(U(a))$ огранич. (2) Знакопост.: $f(a)\ne 0\Rightarrow\exists U(a):\forall x\in U(a)~f(x)\ne 0$.
+
+\textbf{21. Глобальные св-ва}
+\textbf{Вейерштрасс:} непр. образ компакта — компакт. \textbf{Больцано-Коши:} непр. образ связного — связное (промежут. знач.).
+
+\textbf{22. Равномерная непр-ть}
+$f$ равном. непр. на $E$: $\forall\varepsilon>0\exists\delta>0\forall x,y\in E:\rho(x,y)<\delta\Rightarrow\rho(f(x),f(y))<\varepsilon$ ($\delta$ не зависит от точки!). \textbf{Кантор:} $f$ непр. на компакте $K$ $\Rightarrow$ $f$ равном. непр. на $K$. Обычная непр.: $\delta=\delta(\varepsilon,x)$, равном.: $\delta=\delta(\varepsilon)$.
+
+\vspace{0.5cm}
+
+\textbf{23. Класс $C^k$}
+$C^0$ — непр. $C^1$: $\frac{\partial f_j}{\partial x_k}$ непр. $C^k$: все частн. произв. до порядка $k$ непр.
+
+\textbf{24. Линейное отобр.}
+$f(x)=Lx$, где $L$ — матрица $n\times m$.
+
+\textbf{25. Линейная ф-ция}
+$\ell(x)=\langle a,x\rangle=\sum a_ix_i$
+
+\vspace{0.5cm}
+
+\textbf{26. $o$-малое и $O$-большое}
+$\alpha=O(\beta)$ при $x\to a$: $\exists M>0\exists U(a)\forall x\in U(a):\frac{|\alpha(x)|}{|\beta(x)|}\le M$
+$\alpha=o(\beta)$: $\lim_{x\to a}\frac{\alpha(x)}{\beta(x)}=0$
+
+\textbf{27. Лемма}
+$\forall h:|h|<\delta$ верно $L(h)=O(h)$ (для лин. оператора).
+
+\vspace{0.5cm}
+
+\textbf{28. Дифференцируемость}
+$f$ дифф. в $a$: $f(a+h)-f(a)=L(h)+o(|h|)$, где $L:\mathbb{R}^m\to\mathbb{R}^n$ — лин. отобр. \textbf{Дифф-л} $df(a,h)=L(h)$ — главная лин. часть приращения. Геом.: касательное пр-во $T_aX$. $df:T_aX\to T_{f(a)}Y$.
+
+\textbf{29. Дифф-е покоординатно}
+$f:\mathbb{R}^m\to\mathbb{R}^n$ дифф. $\iff$ все $f_j:\mathbb{R}^m\to\mathbb{R}$ дифф.
+
+\textbf{30. Матрица Якоби}
+$J_f(a)=\begin{pmatrix}\frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_m}\\\vdots&\ddots&\vdots\\\frac{\partial f_n}{\partial x_1}&\cdots&\frac{\partial f_n}{\partial x_m}\end{pmatrix}$
+$df(a,h)=J_f(a)\cdot h$
+
+\vspace{0.5cm}
+
+\textbf{31. Связь непр. и дифф.}
+Дифф. $\Rightarrow$ непр. Обратное неверно.
+
+\textbf{32. Правила дифф-я}
+$d(f+g)=df+dg$, $d(\lambda f)=\lambda df$. $d(fg)=g\,df+f\,dg$, $d(\frac{f}{g})=\frac{g\,df-f\,dg}{g^2}$.
+
+\textbf{33. Дифф-е композиции}
+$(g\circ f)$ дифф.: $J_{g\circ f}(a)=J_g(f(a))\cdot J_f(a)$ (цепное правило).
+
+\vspace{0.5cm}
+
+\textbf{34. Произв. по напр., градиент}
+$\frac{\partial f}{\partial e}(a)=\lim_{t\to 0}\frac{f(a+te)-f(a)}{t}$ — произв. по ед. вектору $e$.
+$\nabla f(a)=\text{grad}\,f(a)=(\frac{\partial f}{\partial x_1},\ldots,\frac{\partial f}{\partial x_n})$ — градиент.
+Связь: $\frac{\partial f}{\partial e}(a)=\langle\nabla f(a),e\rangle$ (если $f$ дифф.). $\nabla f$ указывает направл. наиб. возраст. $f$, $|\nabla f|$ — скорость возраст.
+
+\textbf{35. Достаточн. условие}
+$f$ имеет $\frac{\partial f_j}{\partial x_k}$ в окр. $a$ и они непр. в $a$ $(f\in C^1)\Rightarrow f$ дифф. в $a$.
+
+\vspace{0.5cm}
+
+\textbf{36. Обратная ф-ция}
+$f$ — гомеоморфизм, дифф., $df$ имеет непр. обратный $\Rightarrow f^{-1}$ дифф., $d(f^{-1})=(df)^{-1}$.
+
+\textbf{37. Теорема Банаха}
+$F:X\to X$ — $q$-сжимающее ($\rho(F(x_1),F(x_2))\le q\rho(x_1,x_2)$, $q\in(0,1)$) на полном МП $\Rightarrow\exists!$ неподв. точка $a$: $F(a)=a$. Док-во: берем $x_0\in X$, строим $x_{n+1}=F(x_n)$, показываем фундам., предел — неподв. точка. Оценка: $\rho(x_n,a)\le\frac{q^n}{1-q}\rho(x_1,x_0)$.
+/}
+\vspace{0.5cm}
+
+{\color[gray]{0.62}\small
+\textbf{38. Лемма (а-ля Лагранж)}
+$\Delta f=\sum_{i=1}^n\frac{\partial f}{\partial x_i}(\mathbf{c}_i)h_i$, $\mathbf{c}_i$ — промежут. точки.
+Оценка: $|f(a+h)-f(a)|\le\max_i|\frac{\partial f}{\partial x_i}|\cdot|h|$.
+
+\textbf{39. Теорема об обратной ф-ции}
+$f:\mathbb{R}^n\to\mathbb{R}^n$, $f\in C^1$ в окр. $a$, $\det J_f(a)\ne 0\Rightarrow\exists$ окр. $U$ и $V$: $f:U\to V$ — диффеоморфизм, $f^{-1}\in C^1$. $J_{f^{-1}}(f(a))=[J_f(a)]^{-1}$. Идея док-ва: метод Ньютона, теорема Банаха.
+
+\vspace{0.5cm}
+
+\textbf{40. Теорема о неявной ф-ции}
+$F:\mathbb{R}^n\times\mathbb{R}^m\to\mathbb{R}^m$, $F(a,b)=0$, $F\in C^1$, $\det(\frac{\partial F}{\partial y}(a,b))\ne 0\Rightarrow$ в окр. $a$ $\exists!$ $C^1$-ф-ция $y=\varphi(x)$: $F(x,\varphi(x))=0$, $\varphi(a)=b$. Произв.: $\frac{\partial y}{\partial x}=-(\frac{\partial F}{\partial y})^{-1}\frac{\partial F}{\partial x}$ (дифф-е $F(x,\varphi(x))=0$ по $x$). Связь с обр. ф-цией: частный случай.
+
+\textbf{41. Функц. независимость}
+$f_1,\ldots,f_k$ функц. независ.: не $\exists\Phi:\Phi(f_1(\mathbf{x}),\ldots,f_k(\mathbf{x}))=0$ нетривиально.
+
+\vspace{0.5cm}
+
+\textbf{42. Теорема о функц. незав.}
+$f_1,\ldots,f_k\in C^1$ функц. независ. $\iff$ ранг матр. из $\nabla f_i$ равен $k$. При $k=n$: $\det J_f(a)\ne 0$.
+
+\textbf{43. Произв. высш. порядка}
+$\frac{\partial^2 f}{\partial x_i\partial x_j}=\frac{\partial}{\partial x_i}(\frac{\partial f}{\partial x_j})$
+$\frac{\partial^k f}{\partial x_{i_1}\cdots\partial x_{i_k}}$ — посл. дифф-е.
+
+\vspace{0.5cm}
+
+\textbf{44. Теорема Шварца}
+$\frac{\partial^2 f}{\partial x_i\partial x_j}$, $\frac{\partial^2 f}{\partial x_j\partial x_i}$ непр. в $a\Rightarrow$ они равны в $a$.
+
+\textbf{45. Теорема Юнга}
+$f\in C^k\Rightarrow$ результат $k$-кратного дифф-я не зависит от порядка.
+
+\textbf{46. Формула Тейлора}
+$d^kf(a,\mathbf{h})=\sum_{i_1,\ldots,i_k=1}^n\frac{\partial^k f}{\partial x_{i_1}\cdots\partial x_{i_k}}(a)h_{i_1}\cdots h_{i_k}$
+$f(a+\mathbf{h})=f(a)+\sum_{k=1}^m\frac{1}{k!}d^kf(a,\mathbf{h})+\frac{1}{(m+1)!}d^{m+1}f(\mathbf{c},\mathbf{h})$
+
+\vspace{0.5cm}
+
+\textbf{47. Локальный экстремум}
+Лок. мин.: $\exists U(\mathbf{x}_0):\forall\mathbf{x}\in U~f(\mathbf{x})\ge f(\mathbf{x}_0)$. Лок. макс.: $f(\mathbf{x})\le f(\mathbf{x}_0)$.
+
+\textbf{48. Условия экстремума}
+\textbf{Необх. (Ферма):} лок. экстр. и дифф. $\Rightarrow\nabla f(\mathbf{a})=\mathbf{0}$ (стац. точка). \textbf{Достат.:} $\mathbf{a}$ — стац., $H(\mathbf{a})=(\frac{\partial^2 f}{\partial x_i\partial x_j})$ — матр. Гессе. $H>0$ (полож. опред.) $\Rightarrow$ мин; $H<0$ (отриц. опред.) $\Rightarrow$ макс; $H$ знакоперем. $\Rightarrow$ седло; $H$ вырожд. — ? (нужно смотреть высш. произв.). Критерий Сильвестра: $H>0\iff$ все гл. миноры $>0$; $H<0\iff$ миноры чередуются: $\Delta_1<0,\Delta_2>0,\Delta_3<0,\ldots$
+
+\vspace{0.5cm}
+
+\textbf{49-50. Условный экстремум}
+Экстр. $f(\mathbf{x})$ при связях $g_i(\mathbf{x})=0$, $i=1,\ldots,m$. $L(\mathbf{x},\boldsymbol{\lambda})=f(\mathbf{x})+\sum_{i=1}^m\lambda_ig_i(\mathbf{x})$ — ф-ция Лагранжа. \textbf{Необх. (правило множ. Лагранжа):} $\mathbf{a}$ — условн. экстр. $\Rightarrow\exists\boldsymbol{\lambda}=(\lambda_1,\ldots,\lambda_m)$: $\nabla_{\mathbf{x}}L(\mathbf{a},\boldsymbol{\lambda})=0$ и $\frac{\partial L}{\partial\lambda_i}=g_i(\mathbf{a})=0$. Геом. смысл: $\nabla f(\mathbf{a})=\sum\lambda_i\nabla g_i(\mathbf{a})$ (градиент $f$ — лин. комб. градиентов связей). \textbf{Достат.:} исследуем $d^2L$ на многообр. $\{g_i=0\}$.
+
+\vspace{0.5cm}
+
+\textbf{Доп. формулы и факты:}
+$\|x\|_p=(\sum|x_i|^p)^{1/p}$, $\|x\|_\infty=\max|x_i|$. $d^2f(a,h)=\sum_{i,j}\frac{\partial^2f}{\partial x_i\partial x_j}h_ih_j=\langle Hh,h\rangle$. Для $f:\mathbb{R}^2\to\mathbb{R}$: $H=\begin{pmatrix}f_{xx}&f_{xy}\\f_{yx}&f_{yy}\end{pmatrix}$. Стац. точка $(a,b)$: (1) $\det H>0$, $f_{xx}>0\Rightarrow$ мин; (2) $\det H>0$, $f_{xx}<0\Rightarrow$ макс; (3) $\det H<0\Rightarrow$ седло; (4) $\det H=0$ — ?. \textbf{Связность:} $A$ связно $\iff$ не предст. как объед. двух непуст. непересек. откр. (в $A$) мн-в. $\mathbb{R}^n$ связно. \textbf{Компактность:} послед. критерий: $K$ компакт $\iff$ из любой послед. можно выделить сходящ. подпослед. \textbf{Теор. Вейерштрасса 2:} непр. ф-ция на компакте достигает своих $\sup$ и $\inf$.
+}
+
+\end{multicols}
+
+\end{document}
+

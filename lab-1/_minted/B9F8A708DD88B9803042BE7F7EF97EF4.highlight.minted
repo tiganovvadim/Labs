@@ -1,0 +1,6 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }lshw\PYG{+w}{ }\PYGZhy{}C\PYG{+w}{ }network
+sudo\PYG{+w}{ }ethtool\PYG{+w}{ }enp0s3
+ip\PYG{+w}{ }link\PYG{+w}{ }show
+ip\PYG{+w}{ }addr\PYG{+w}{ }show
+\end{MintedVerbatim}

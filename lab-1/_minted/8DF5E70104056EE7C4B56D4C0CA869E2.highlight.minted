@@ -1,0 +1,3 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+ip\PYG{+w}{ }neighbor\PYG{+w}{ }show\PYG{+w}{ }\PYGZgt{}\PYG{+w}{ }arp1
+\end{MintedVerbatim}

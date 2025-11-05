@@ -1,0 +1,98 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\title{Домашнее задание №5}
+\date{}
+
+\begin{document}
+
+\maketitle
+\Large\flushleft{Тиганов Вадим Игоревич, группа J3212\\ИСУ: 467701}
+
+\lstset{
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false,
+    backgroundcolor=\color{gray!10},
+    language=Python,
+}
+
+
+
+
+\section*{Задача 1: Сжимающие отображения}
+
+\subsection*{(a) $f(x) = \arctan(x)$}
+Производная $f'(x) = \frac{1}{1 + x^2}$.
+На $\mathbb{R}$ имеем $0 < f'(x) \leq 1$. Так как $\sup_{x \in \mathbb{R}} |f'(x)| = 1$ (достигается в $x=0$), отображение \textbf{не является сжимающим} на $\mathbb{R}$.
+Оно является сжимающим на любом отрезке $[a, b]$, не содержащем $0$, так как на таком отрезке $\max |f'(x)| < 1$.
+
+\subsection*{(b) $f(x) = \ln(1 + e^x)$}
+Производная $f'(x) = \frac{e^x}{1 + e^x}$.
+Для всех $x \in \mathbb{R}$ выполняется $0 < f'(x) < 1$. Однако $\sup_{x \in \mathbb{R}} f'(x) = \lim_{x \to \infty} \frac{e^x}{1 + e^x} = 1$.
+Следовательно, отображение \textbf{не является сжимающим} на $\mathbb{R}$. Оно будет сжимающим на любом конечном отрезке $[a, b]$.
+
+\subsection*{(c) $f(x) = \frac{x}{2} + \sin(x)$}
+Производная $f'(x) = \frac{1}{2} + \cos(x)$.
+Условие сжатия: $|\frac{1}{2} + \cos(x)| < 1$, что эквивалентно $-\frac{3}{2} < \cos(x) < \frac{1}{2}$.
+Это выполняется, когда $x \in \bigcup_{k \in \mathbb{Z}} (\frac{\pi}{3} + 2\pi k, \frac{5\pi}{3} + 2\pi k)$.
+Наибольшими отрезками, где отображение сжимающее, являются любые отрезки $[a,b]$, целиком лежащие внутри одного из этих интервалов.
+
+\section*{Задача 2: Уравнение $x = e^{-x}$}
+
+\paragraph{Доказательство единственности.}
+Рассмотрим функцию $g(x) = x - e^{-x}$.
+Её производная $g'(x) = 1 + e^{-x} > 1$ для всех $x \in \mathbb{R}$.
+Так как $g'(x) > 0$, функция $g(x)$ строго монотонно возрастает.
+Поскольку $\lim_{x \to -\infty} g(x) = -\infty$ и $\lim_{x \to +\infty} g(x) = +\infty$, по теореме о промежуточном значении существует корень. В силу строгой монотонности он единственен.
+
+\paragraph{Итерационный процесс.}
+Используем метод простых итераций: $x_{n+1} = e^{-x_n}$.
+Начнём с $x_0 = 0$:
+\begin{align*}
+x_1 &= e^{-0} = 1 \\
+x_2 &= e^{-1} \approx 0.3679 \\
+x_3 &= e^{-0.3679} \approx 0.6922 \\
+x_4 &= e^{-0.6922} \approx 0.5005 \\
+x_5 &= e^{-0.5005} \approx 0.6062
+\end{align*}
+Последовательность сходится к решению $x \approx 0.56714$.\\
+(Считал на Python:)
+\begin{lstlisting}[language=Python]
+import math
+
+x_n = 0
+sequence = [x_n]
+
+for i in range(1, 10**6):
+    x_n = math.exp(-x_n)
+    sequence.append(round(x_n, 4))
+
+print(sequence[0:6])
+print(sequence[10**6 - 1])
+# [0, 1.0, 0.3679, 0.6922, 0.5005, 0.6062]
+# 0.5671
+\end{lstlisting}
+
+\section*{Задача 3: Производная обратной функции}
+Пусть $f$ непрерывно дифференцируема в точке $a$, $f'(a) \neq 0$, и $g = f^{-1}$.
+По определению производной:
+\[ g'(y_0) = \lim_{y \to y_0} \frac{g(y) - g(y_0)}{y - y_0} \]
+где $y_0 = f(a)$. Сделаем замену $x = g(y)$, $a = g(y_0)$. Из непрерывности $g$ следует, что $y \to y_0 \implies x \to a$.
+\[ g'(y_0) = \lim_{x \to a} \frac{x - a}{f(x) - f(a)} = \lim_{x \to a} \frac{1}{\frac{f(x) - f(a)}{x - a}} \]
+Так как предел знаменателя существует и равен $f'(a) \neq 0$:
+\[ g'(y_0) = \frac{1}{\lim_{x \to a} \frac{f(x) - f(a)}{x - a}} = \frac{1}{f'(a)} \]
+
+
+
+
+
+\end{document}

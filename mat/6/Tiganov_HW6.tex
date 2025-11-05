@@ -1,0 +1,129 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\title{Домашнее задание №6}
+\date{}
+\begin{document}
+
+\maketitle
+\Large\flushleft{Тиганов Вадим Игоревич, группа J3212\\ИСУ: 467701}
+
+\section*{Задание 1}
+
+Найти производную \( y'(x) \), если 
+\[ e^y - e^x + x^2 + y^2 = 0 \]
+
+\textbf{а) Через теорему об обратной функции:}
+
+\( F(x, y) = e^y - e^x + x^2 + y^2 \)
+\[
+y'_x = -\frac{F'_x}{F'_y}
+\]
+\[
+F'_x = -e^x + 2x,\quad F'_y = e^y + 2y
+\]
+\[
+y'_x = -\frac{-e^x + 2x}{e^y + 2y} = \frac{e^x - 2x}{e^y + 2y}
+\]
+
+\textbf{б) Через дифференцирование равенства:}
+
+Дифференцируем обе части уравнения по \( x \):
+\[
+e^y \cdot y'_x - e^x + 2x + 2y \cdot y'_x = 0
+\]
+
+Выразим \( y'_x \):
+\[
+y'_x (e^y + 2y) = e^x - 2x
+\]
+\[
+y'_x = \frac{e^x - 2x}{e^y + 2y}
+\]
+
+\section*{Задание 2}
+
+Дана система:
+\[
+\left\{
+\begin{aligned}
+&xu + yv - u^3 = 0\\\\
+&x + y + u + v = 0
+\end{aligned}
+\right.
+\]
+Найти частные производные в точке \( A(1, 0, 1, -2) \):
+
+\[
+\frac{\partial u}{\partial x},\quad \frac{\partial u}{\partial y},\quad \frac{\partial v}{\partial x},\quad \frac{\partial v}{\partial y}
+\]
+
+Дифференцируем первое уравнение по \( x \):
+\[
+u + x \frac{\partial u}{\partial x} + y \frac{\partial v}{\partial x} - 3u^2 \frac{\partial u}{\partial x} = 0
+\]
+
+Дифференцируем первое уравнение по \( y \):
+\[
+x \frac{\partial u}{\partial y} + v + y \frac{\partial v}{\partial y} - 3u^2 \frac{\partial u}{\partial y} = 0
+\]
+
+Дифференцируем второе уравнение по \( x \):
+\[
+1 + \frac{\partial u}{\partial x} + \frac{\partial v}{\partial x} = 0
+\]
+
+Дифференцируем второе уравнение по \( y \):
+\[
+1 + \frac{\partial u}{\partial y} + \frac{\partial v}{\partial y} = 0
+\]
+
+Подставляем значения из точки \( A(1, 0, 1, -2) \):
+\[
+u = 1, v = -2, x = 1, y = 0
+\]
+
+Решаем систему уравнений:
+\[
+1 + \frac{\partial u}{\partial x} - 3 \frac{\partial u}{\partial x} = 0
+\]
+\[
+\frac{\partial u}{\partial x} = \frac{1}{2}
+\]
+
+\[
+1 + \frac{1}{2} + \frac{\partial v}{\partial x} = 0
+\]
+\[
+\frac{\partial v}{\partial x} = -\frac{3}{2}
+\]
+
+\[
+1 \cdot \frac{\partial u}{\partial y} - 2 - 3 \frac{\partial u}{\partial y} = 0
+\]
+\[
+\frac{\partial u}{\partial y} = -1
+\]
+
+\[
+1 - 1 + \frac{\partial v}{\partial y} = 0
+\]
+\[
+\frac{\partial v}{\partial y} = 0
+\]
+
+\textbf{Ответ:}
+\[
+\frac{\partial u}{\partial x} = \frac{1}{2},\ 
+\frac{\partial u}{\partial y} = -1,\ 
+\frac{\partial v}{\partial x} = -\frac{3}{2},\ 
+\frac{\partial v}{\partial y} = 0
+\]
+
+\end{document}

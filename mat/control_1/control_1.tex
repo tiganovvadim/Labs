@@ -1,0 +1,92 @@
+\documentclass[6pt,a4paper]{extarticle}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{multicol}
+\usepackage{geometry}
+\usepackage{xcolor}
+
+\geometry{margin=0.5cm}
+\setlength{\columnsep}{0.3cm}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\definecolor{lightgray}{gray}{0.74}
+
+\renewcommand{\baselinestretch}{0.85}
+
+\begin{document}
+\color{lightgray}
+\small
+
+\begin{multicols}{3}
+
+{\color[gray]{0.77}
+\textbf{Задача 1: Линии уровня}
+Дано: $f(x, y) = \frac{y}{x^2}$. Найти линии уровня. Метод: записать $f(x, y) = C$, где $C$ — константа. Получаем $\frac{y}{x^2} = C \implies y = C x^2$ при $x \ne 0$. Это семейство парабол с вершиной в начале координат. Для разных $C$: $C > 0$ — ветви вверх, $C < 0$ — вниз, $C = 0$ — ось $Ox$. При $C = 1$: $y = x^2$, при $C = 2$: $y = 2x^2$ и т.д. График: все параболы проходят через $(0,0)$, но $x = 0$ не в области определения. Как чертить: выбрать значения $C = -2, -1, 0, 1, 2$, построить $y = Cx^2$ для каждого, отметить направление возрастания $f$ (в данном случае по вертикали). Общий алгоритм: (1) $f(x, y) = C$; (2) выразить $y$ через $x$ или параметризовать; (3) построить несколько кривых для разных $C$; (4) проанализировать поведение.
+
+\vspace{0.3cm}
+
+\textbf{Задача 2: Предел (полярные)}
+$\lim_{(x,y) \to (0,0)} \frac{x^3 + y^3}{x^2 + y^2}$. Общий алгоритм: (1) перейти к полярным координатам $x = r\cos\theta, y = r\sin\theta$; (2) получить выражение вида $r \cdot g(\theta)$; (3) если $g$ ограничен, предел $= 0$. Решение: $\frac{r^3(\cos^3\theta + \sin^3\theta)}{r^2} = r(\cos^3\theta + \sin^3\theta)$. Так как $|\cos^3\theta + \sin^3\theta| \le 2$, получаем ограниченную функцию, умноженную на $r \to 0$. Следовательно, предел равен $0$. Проверка: при $y = kx$ получаем $\frac{x^3(1 + k^3)}{x^2(1 + k^2)} = x\frac{1 + k^3}{1 + k^2} \to 0$. Ответ: $0$.
+
+\vspace{0.3cm}
+
+\textbf{Задача 3: Касательная плоскость}
+Поверхность: $F(x,y,z) = x^2 + 3xyz + 4y^2 + 2z^3 = 0$, точка $M(0, 2, -2)$. Общий алгоритм: (1) вычислить частные производные $F'_x, F'_y, F'_z$; (2) подставить координаты точки; (3) составить уравнение $F'_x(M)(x-x_0) + F'_y(M)(y-y_0) + F'_z(M)(z-z_0) = 0$. Решение: $F'_x = 2x + 3yz, F'_y = 3xz + 8y, F'_z = 3xy + 6z^2$. В $M$: $F'_x = -12, F'_y = 16, F'_z = 24$. Уравнение: $-12x + 16(y-2) + 24(z+2) = 0$. Упрощая: $-12x + 16y - 32 + 24z + 48 = 0$, т.е. $-3x + 4y + 6z = 4$. Геометрически: нормаль плоскости $\vec{n} = (-12, 16, 24)$, показывает направление изменения поверхности в точке $M$.
+
+\vspace{0.3cm}
+
+\textbf{Задача 4: Разложение Тейлора}
+$f(x, y, z) = \frac{\cos(y + z)}{e^x}$, разложить до $o(\|h\|^2)$ в точке $a = (0, 0, 0)$. Общий алгоритм: (1) вычислить $f(a)$; (2) найти первые и вторые производные в $a$; (3) записать $f(a+h) = f(a) + df(a,h) + \frac{1}{2}d^2f(a,h) + o(\|h\|^2)$. Решение: $f(0,0,0) = 1$. Первые: $f'_x = -\frac{\cos(y+z)}{e^x} = -1, f'_y = f'_z = 0$ в $(0,0,0)$. Вторые: $f''_{xx} = -\frac{2\cos(y+z)}{e^x} = 0, f''_{xy} = \frac{\sin(y+z)}{e^x} = 0, f''_{yy} = f''_{zz} = \frac{\cos(y+z)}{e^x} = 1, f''_{yz} = -\frac{\cos(y+z)}{e^x} = -1$ в $(0,0,0)$. Разложение: $f(x,y,z) = 1 - x + \frac{1}{2}(y^2 + z^2 - 2yz) + o(x^2 + y^2 + z^2) = 1 - x + \frac{1}{2}(y-z)^2 + o(\|h\|^2)$.
+
+\vspace{0.3cm}
+
+\textbf{Задача 5: Экстремумы}
+$f(x, y) = (x-y)(1-xy)$. Общий алгоритм: (1) найти частные производные $f'_x, f'_y$; (2) решить систему $f'_x = 0, f'_y = 0$; (3) исследовать характер критических точек по Гессиану. Решение: $f'_x = 1 \cdot (1-xy) + (x-y)(-y) = 1 - 2xy + y^2$; $f'_y = -1 \cdot (1-xy) + (x-y)(-x) = -1 - x^2 + 2xy$. Система: $1 - 2xy + y^2 = 0, -1 - x^2 + 2xy = 0$. Складывая: $y^2 - x^2 = 0 \implies y = \pm x$. Для $y = x$: $1 - x^2 = 0 \implies x = \pm 1$. Критические точки: $(1,1)$ и $(-1,-1)$. Вычисляем Гессиан: $f_{xx} = -2y, f_{xy} = -2x + 2y = f_{yx}, f_{yy} = 2x$. В $(1,1)$: $H = \begin{pmatrix} -2 & 0 \\ 0 & 2 \end{pmatrix}$, $\det H = -4 < 0$ — седло. В $(-1,-1)$: $H = \begin{pmatrix} 2 & 0 \\ 0 & -2 \end{pmatrix}$, $\det H = -4 < 0$ — седло.
+
+\vspace{0.3cm}
+
+\textbf{Задача 6: Угол между градиентами}
+$f(x, y) = \frac{y^2}{x}, g(x, y) = 2x^2 + y^2$, точка $(4,2)$. Общий алгоритм: (1) вычислить градиенты $\nabla f, \nabla g$ в точке; (2) найти скалярное произведение и длины; (3) вычислить $\cos\phi = \frac{\langle\nabla f, \nabla g\rangle}{|\nabla f||\nabla g|}$. Решение: $\nabla f = (-\frac{y^2}{x^2}, \frac{2y}{x}), \nabla g = (4x, 2y)$. В $(4,2)$: $\nabla f = (-\frac{1}{4}, 1), \nabla g = (16, 4)$. Скалярное: $\langle\nabla f, \nabla g\rangle = -4 + 4 = 0$. Значит $\cos\phi = 0, \phi = 90°$ — градиенты перпендикулярны!
+
+\vspace{0.3cm}
+
+\textbf{Задача 7: Второй дифференциал}
+$f(x, y) = \varphi(xy, y/x)$. Общий алгоритм: (1) ввести новые переменные $u = xy, v = y/x$; (2) найти первый дифференциал по цепному правилу; (3) продифференцировать ещё раз для $d^2f$. Решение: Частные производные: $u'_x = y, u'_y = x, v'_x = -y/x^2, v'_y = 1/x$. Шаг 1: первые производные. По цепному правилу $(f(g(x)))' = f'(g) \cdot g'$: $f'_x = \varphi'_u \cdot u'_x + \varphi'_v \cdot v'_x = \varphi'_u \cdot y + \varphi'_v \cdot (-y/x^2)$, $f'_y = \varphi'_u \cdot u'_y + \varphi'_v \cdot v'_y = \varphi'_u \cdot x + \varphi'_v \cdot (1/x)$. Шаг 2: вторые производные. Дифференцируем $f'_x$ по $x$: $\frac{\partial}{\partial x}[y\varphi'_u] = y(\varphi''_{uu} \cdot u'_x + \varphi''_{uv} \cdot v'_x) = y(\varphi''_{uu}y + \varphi''_{uv}(-y/x^2))$, $\frac{\partial}{\partial x}[-\frac{y}{x^2}\varphi'_v] = \frac{2y}{x^3}\varphi'_v - \frac{y}{x^2}(\varphi''_{vu}u'_x + \varphi''_{vv}v'_x) = \frac{2y}{x^3}\varphi'_v - \frac{y}{x^2}(\varphi''_{vu}y + \varphi''_{vv}(-y/x^2))$. Итого: $f''_{xx} = y^2\varphi''_{uu} - \frac{y^2}{x^2}\varphi''_{uv} + \frac{2y}{x^3}\varphi'_v - \frac{y^2}{x^2}\varphi''_{vu} + \frac{y^2}{x^4}\varphi''_{vv}$. $f''_{xy}$ аналогично, $d^2f = f''_{xx}dx^2 + 2f''_{xy}dxdy + f''_{yy}dy^2$.
+
+\vspace{0.3cm}
+
+\textbf{Задача 8: Ближайшая точка на конусе}
+Найти ближайшую к точке $(0,2,3)$ точку на конусе $x^2 = y^2 + z^2$. Общий алгоритм: (1) составить функцию расстояния $D^2 = (x-0)^2 + (y-2)^2 + (z-3)^2$; (2) использовать ограничение $x^2 = y^2 + z^2$; (3) применить метод множителей Лагранжа или подстановку. Решение: $D^2 = x^2 + (y-2)^2 + (z-3)^2$. Используя $x^2 = y^2 + z^2$: $D^2 = y^2 + z^2 + y^2 - 4y + 4 + z^2 - 6z + 9 = 2y^2 + 2z^2 - 4y - 6z + 13$. Минимум: $\frac{\partial D^2}{\partial y} = 4y - 4 = 0 \implies y = 1$, $\frac{\partial D^2}{\partial z} = 4z - 6 = 0 \implies z = 1.5$. Тогда $x^2 = 1 + 2.25 = 3.25$, $x = \pm \sqrt{3.25}$. Ближайшая точка: $(\sqrt{3.25}, 1, 1.5)$. Альтернатива: метод Лагранжа: минимизировать $D^2$ при $g(x,y,z) = x^2 - y^2 - z^2 = 0$, система $\nabla D^2 = \lambda \nabla g$, $x^2 = y^2 + z^2$.
+}
+
+\vspace{0.5cm}
+
+\textbf{ВАРИАНТ 2}
+{\color[gray]{0.62}\small
+\textbf{З.1: Линии уровня} $f = \frac{2}{xy}$. Линия уровня: $\frac{2}{xy} = C \implies xy = \frac{2}{C}$ ($C \ne 0$). Это гиперболы $y = \frac{2}{Cx}$. При $C > 0$: I и III квадранты; при $C < 0$: II и IV квадранты. Алгоритм: (1) $f = C$; (2) выразить $y$; (3) исследовать при разных $C$.
+
+\textbf{З.2: Предел} $\lim_{(x,y) \to (0,0)} (x + y^2)(\sin \frac{1}{x} + \sin \frac{1}{y^2})$. $|\sin \frac{1}{x} + \sin \frac{1}{y^2}| \le 2$ ограничен, $(x + y^2) \to 0$. Ограниченная на бесконечно малую $= 0$. Ответ: $0$.
+
+\textbf{З.3: Касательная плоскость} $F = z + y^2 - 2x^3 - 2xy = 0$, $M(-1,1,-5)$. $F'_x = -6x^2 - 2y = -8, F'_y = 2y - 2x = 4, F'_z = 1$. Уравнение: $-8(x+1) + 4(y-1) + (z+5) = 0$, т.е. $-8x + 4y + z = 7$.
+
+\textbf{З.4: Тейлор} $f = \frac{\cos(y-z)}{1+x}$ в $(0,0,0)$. $f(0) = 1$. Первые: $f'_x = -\frac{\cos(y-z)}{(1+x)^2} = -1, f'_y = f'_z = 0$ в $(0,0,0)$. Вторые: $f''_{xx} = \frac{2\cos(y-z)}{(1+x)^3} = 2, f''_{xy} = \frac{\sin(y-z)}{(1+x)^2} = 0, f''_{yy} = f''_{zz} = -\frac{\cos(y-z)}{1+x} = -1, f''_{yz} = \frac{\cos(y-z)}{1+x} = 1$ в $(0,0,0)$. Разложение: $f(x,y,z) = 1 - x + \frac{1}{2}(2x^2 - y^2 - z^2 + 2yz) + o(\|h\|^2) = 1 - x + x^2 - \frac{1}{2}(y-z)^2 + o(\|h\|^2)$.
+
+\textbf{З.5: Экстремум} $f = 3x^2y + y^3 - 18x - 30y$. $f'_x = 6xy - 18 = 0 \implies xy = 3$, $f'_y = 3x^2 + 3y^2 - 30 = 0 \implies x^2 + y^2 = 10$. Из $x = \frac{3}{y}$: $\frac{9}{y^2} + y^2 = 10, y^4 - 10y^2 + 9 = 0, y^2 = 5 \pm 4$, $y = \pm 1, \pm 3$. Точки: $(3,1), (-3,-1), (1,3), (-1,-3)$. $H = \begin{pmatrix} 6y & 6x \\ 6x & 6y \end{pmatrix}$. В $(1,3)$: $\det H = 288 > 0, f_{xx} = 18 > 0$ — мин; в $(-1,-3)$ аналогично — мин; в $(3,1)$ и $(-3,-1)$: $\det H = 0$ — требуется дополнительное исследование.
+
+\textbf{З.6: Угол градиентов} $f = \frac{y^2}{x}, g = 2x^2 + y^2$, $(3,-1)$. $\nabla f = (-\frac{1}{9}, -\frac{2}{3}), \nabla g = (12, -2)$. Скалярное: $0$. Угол $90°$ — перпендикулярны!
+
+\textbf{З.7: $d^2f$} $f = \varphi(x^2 + y^2, x/y)$. $u = x^2 + y^2, v = x/y$. $df = \varphi'_u(2xdx + 2ydy) + \varphi'_v(\frac{1}{y}dx - \frac{x}{y^2}dy) = (2x\varphi'_u + \frac{\varphi'_v}{y})dx + (2y\varphi'_u - \frac{x\varphi'_v}{y^2})dy$. Первые производные: $f'_x = 2x\varphi'_u + \frac{\varphi'_v}{y}, f'_y = 2y\varphi'_u - \frac{x\varphi'_v}{y^2}$. Вторые: $f''_{xx} = 2\varphi'_u + 2x[\varphi''_{uu}2x + \varphi''_{uv}\frac{1}{y}] + \frac{1}{y}[\varphi''_{vu}2x + \varphi''_{vv}\frac{1}{y}] - \frac{\varphi'_v}{y^2}$. $f''_{xy} = 2x[\varphi''_{uu}2y + \varphi''_{uv}(-\frac{x}{y^2})] + \frac{\varphi'_v}{y^2} - \frac{x}{y^2}[\varphi''_{vu}2y + \varphi''_{vv}(-\frac{x}{y^2})] + \frac{2x\varphi'_v}{y^3}$. Аналогично $f''_{yy}$. Формула: $d^2f = f''_{xx}dx^2 + 2f''_{xy}dxdy + f''_{yy}dy^2$.
+
+\textbf{З.8: Ближайшая точка} Минимум расстояния от $(0,2,3)$ до $x^2 = y^2 + z^2$. $D^2 = y^2 + z^2 + (y-2)^2 + (z-3)^2 = 2y^2 + 2z^2 - 4y - 6z + 13$. $\frac{\partial D^2}{\partial y} = 4y - 4 = 0 \implies y = 1, \frac{\partial D^2}{\partial z} = 4z - 6 = 0 \implies z = 1.5$. $x^2 = 3.25, x = \pm\sqrt{3.25}$. Ответ: $(\sqrt{3.25}, 1, 1.5)$.
+\textbf{Производные:} $x^n \to n x^{n-1} \to n(n-1)x^{n-2}$; $e^x \to e^x \to e^x$; $\ln x \to 1/x \to -1/x^2$; $\sin x \to \cos x \to -\sin x$; $\cos x \to -\sin x \to -\cos x$; $\arcsin x \to \frac{1}{\sqrt{1-x^2}} \to \frac{x}{(1-x^2)^{3/2}}$; $\arccos x \to -\frac{1}{\sqrt{1-x^2}} \to -\frac{x}{(1-x^2)^{3/2}}$; $\arctan x \to \frac{1}{1 + x^2} \to -\frac{2x}{(1 + x^2)^2}$; $(uv)' = u'v + uv'$; $(u/v)' = (u'v - uv')/v^2$; $(f(g))' = f'(g) \cdot g'$.
+
+
+}
+
+\end{multicols}
+
+\end{document}

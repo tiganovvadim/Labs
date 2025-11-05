@@ -1,0 +1,224 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{xcolor}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\title{Домашнее задание №7}
+\date{}
+\begin{document}
+
+\maketitle
+\Large\flushleft{Тиганов Вадим Игоревич, группа J3212\\ИСУ: 467701}
+
+\section*{Задание 1}
+
+Найти \( df(0, 1) \), \( d^2f(0, 1) \), если \( f(x, y) = \arctg(xy) + \sin x \)
+
+\textbf{Решение:}
+
+Частные производные первого порядка:
+\[
+f_x = \frac{y}{1 + (xy)^2} + \cos x, \quad f_y = \frac{x}{1 + (xy)^2}
+\]
+
+В точке \( (0, 1) \):
+\[
+f_x(0, 1) = \frac{1}{1 + 0} + \cos 0 = 1 + 1 = 2
+\]
+\[
+f_y(0, 1) = \frac{0}{1 + 0} = 0
+\]
+
+Первый дифференциал:
+\[
+df(0, 1) = f_x(0, 1)dx + f_y(0, 1)dy = 2dx
+\]
+
+Частные производные второго порядка:
+\[
+f_{xx} = \frac{\partial}{\partial x}\left(\frac{y}{1 + x^2y^2} + \cos x\right) = -\frac{2xy^3}{(1 + x^2y^2)^2} - \sin x
+\]
+\[
+f_{xy} = \frac{\partial}{\partial y}\left(\frac{y}{1 + x^2y^2} + \cos x\right) = \frac{1 - x^2y^2}{(1 + x^2y^2)^2}
+\]
+\[
+f_{yy} = \frac{\partial}{\partial y}\left(\frac{x}{1 + x^2y^2}\right) = -\frac{2x^3y}{(1 + x^2y^2)^2}
+\]
+
+В точке \( (0, 1) \):
+\[
+f_{xx}(0, 1) = 0 - 0 = 0, \quad f_{xy}(0, 1) = \frac{1}{1} = 1, \quad f_{yy}(0, 1) = 0
+\]
+
+Второй дифференциал:
+\[
+d^2f(0, 1) = f_{xx}(0, 1)dx^2 + 2f_{xy}(0, 1)dxdy + f_{yy}(0, 1)dy^2 =
+\]
+
+\[
+    = 0 \cdot dx^2 + 2 \cdot 1 \cdot dxdy + 0 \cdot dy^2 = 2dxdy
+\]
+
+\textbf{Итоговый ответ:}
+\[
+df(0, 1) = 2dx, \quad d^2f(0, 1) = 2dxdy.
+\]
+
+\section*{Задание 2}
+Найти \( dg \), \( d^2g \), если \( g(u, v) = f(x(u, v), y(u, v)) \), где \( f(x, y) = x\sin y + y\cos x \) и \( x = uv \), \( y = u^2 - v^2 \)
+
+\textbf{Решение:}
+Дифференциалы \( dx \) и \( dy \):
+\[
+dx = x_u du + x_v dv = vdu + udv, \quad dy = y_u du + y_v dv = 2udu - 2vdv
+\]
+
+Вторые дифф.:
+\[
+d^2x = 2dudv, \quad d^2y = 2du^2 - 2dv^2
+\]
+
+Первый дифференциал \( dg = df \):
+\[
+dg = f_x dx + f_y dy = f_x(vdu + udv) + f_y(2udu - 2vdv) = 
+\]
+\[
+    = (vf_x + 2uf_y)du + (uf_x - 2vf_y)dv
+\]
+
+Частные производные \( f \):
+\[
+f_x = \sin y - y\sin x, \quad f_y = x\cos y + \cos x
+\]
+
+Для второго дифф. используем формулу:
+\[
+d^2g = f_{xx}dx^2 + 2f_{xy}dxdy + f_{yy}dy^2 + f_x d^2x + f_y d^2y
+\]
+
+Вычисляем:
+\[
+dx^2 = (vdu + udv)^2 = v^2du^2 + 2uvdudv + u^2dv^2
+\]
+\[
+dy^2 = (2udu - 2vdv)^2 = 4u^2du^2 - 8uvdudv + 4v^2dv^2
+\]
+\[
+dxdy = (vdu + udv)(2udu - 2vdv) = 2uvdu^2 + (2u^2 - 2v^2)dudv - 2uvdv^2
+\]
+
+Подстановка:
+\[
+d^2g = f_{xx}(v^2du^2 + 2uvdudv + u^2dv^2) + 2f_{xy}(2uvdu^2 + (2u^2 - 2v^2)dudv - 2uvdv^2)
+\]
+\[
++ f_{yy}(4u^2du^2 - 8uvdudv + 4v^2dv^2) + f_x(2dudv) + f_y(2du^2 - 2dv^2)
+\]
+
+Группировка:
+\[
+d^2g = (f_{xx}v^2 + 4uvf_{xy} + 4u^2f_{yy} + 2f_y)du^2
+\]
+\[
++ (2uvf_{xx} + 4(u^2 - v^2)f_{xy} - 8uvf_{yy} + 2f_x)dudv
+\]
+\[
++ (f_{xx}u^2 - 4uvf_{xy} + 4v^2f_{yy} - 2f_y)dv^2
+\]
+
+Частные произв. второго порядка \( f \):
+\[
+f_{xx} = -y\cos x, \quad f_{xy} = \cos y - \sin x, \quad f_{yy} = -x\sin y
+\]
+
+Все произв. вычисляются в точке \( (x, y) = (uv, u^2 - v^2) \).
+
+\textbf{Ответ:}
+\[
+dg = (vf_x + 2uf_y)du + (uf_x - 2vf_y)dv
+\]
+\[
+d^2g = (f_{xx}v^2 + 4uvf_{xy} + 4u^2f_{yy} + 2f_y)du^2
+\]
+\[
++ (2uvf_{xx} + 4(u^2 - v^2)f_{xy} - 8uvf_{yy} + 2f_x)dudv
+\]
+\[
++ (f_{xx}u^2 - 4uvf_{xy} + 4v^2f_{yy} - 2f_y)dv^2
+\]
+
+\section*{Задание 3}
+
+Найти \( du \), \( d^2u \), если \( u = \phi(xy, \frac{x}{y}) \), где \( \phi \) — дважды непрерывно дифференцируемая функция, \( x, y \) — независимые переменные.
+
+\textbf{Решение:}
+
+Обозначим: \( s = xy \), \( t = \frac{x}{y} \). Тогда \( u = \phi(s, t) \).
+
+Первый дифф.:
+\[
+du = \phi_s ds + \phi_t dt = \phi_s(ydx + xdy) + \phi_t\left(\frac{1}{y}dx - \frac{x}{y^2}dy\right)
+\]
+\[
+= \left(y\phi_s + \frac{1}{y}\phi_t\right)dx + \left(x\phi_s - \frac{x}{y^2}\phi_t\right)dy
+\]
+
+Для второго дифф.:
+\[
+d^2u = A_x dx^2 + (A_y + B_x)dxdy + B_y dy^2
+\]
+
+где
+\[
+A = y\phi_s + \frac{1}{y}\phi_t, \quad B = x\phi_s - \frac{x}{y^2}\phi_t
+\]
+
+Вычислим произв.:
+\[
+A_x = y^2\phi_{ss} + 2\phi_{st} + \frac{1}{y^2}\phi_{tt}
+\]
+\[
+A_y = \phi_s + xy\phi_{ss} - \frac{1}{y^2}\phi_t - \frac{x}{y^3}\phi_{tt}
+\]
+\[
+B_x = \phi_s + xy\phi_{ss} - \frac{1}{y^2}\phi_t - \frac{x}{y^3}\phi_{tt}
+\]
+\[
+B_y = x^2\phi_{ss} - \frac{2x^2}{y^2}\phi_{st} + \frac{x^2}{y^4}\phi_{tt}
+\]
+
+\( A_y = B_x \), $\implies$:
+\[
+A_y + B_x = 2\left(\phi_s + xy\phi_{ss} - \frac{1}{y^2}\phi_t - \frac{x}{y^3}\phi_{tt}\right)
+\]
+
+Тогда:
+\[
+d^2u = \left(y^2\phi_{ss} + 2\phi_{st} + \frac{1}{y^2}\phi_{tt}\right)dx^2
+\]
+\[
++ 2\left(\phi_s + xy\phi_{ss} - \frac{1}{y^2}\phi_t - \frac{x}{y^3}\phi_{tt}\right)dxdy
+\]
+\[
++ \left(x^2\phi_{ss} - \frac{2x^2}{y^2}\phi_{st} + \frac{x^2}{y^4}\phi_{tt}\right)dy^2
+\]
+
+\textbf{Ответ:}
+\[
+du = \left(y\phi_s + \frac{1}{y}\phi_t\right)dx + \left(x\phi_s - \frac{x}{y^2}\phi_t\right)dy
+\]
+\[
+d^2u = \left(y^2\phi_{ss} + 2\phi_{st} + \frac{1}{y^2}\phi_{tt}\right)dx^2
+\]
+\[
++ 2\left(\phi_s + xy\phi_{ss} - \frac{1}{y^2}\phi_t - \frac{x}{y^3}\phi_{tt}\right)dxdy
+\]
+\[
++ \left(x^2\phi_{ss} - \frac{2x^2}{y^2}\phi_{st} + \frac{x^2}{y^4}\phi_{tt}\right)dy^2
+\]
+
+\end{document}

@@ -1,0 +1,13 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Для статической конфигурации}
+auto\PYG{+w}{ }enp0s3
+iface\PYG{+w}{ }enp0s3\PYG{+w}{ }inet\PYG{+w}{ }static
+\PYG{+w}{    }address\PYG{+w}{ }\PYG{l+m}{10}.100.0.2
+\PYG{+w}{    }netmask\PYG{+w}{ }\PYG{l+m}{255}.255.255.0
+\PYG{+w}{    }gateway\PYG{+w}{ }\PYG{l+m}{10}.100.0.1
+\PYG{+w}{    }dns\PYGZhy{}nameservers\PYG{+w}{ }\PYG{l+m}{8}.8.8.8
+
+\PYG{c+c1}{\PYGZsh{} Для динамической конфигурации}
+auto\PYG{+w}{ }enp0s3
+iface\PYG{+w}{ }enp0s3\PYG{+w}{ }inet\PYG{+w}{ }dhcp
+\end{MintedVerbatim}

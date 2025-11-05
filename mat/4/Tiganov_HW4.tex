@@ -1,0 +1,259 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{geometry}
+\geometry{left=2cm,right=2cm,top=2cm,bottom=2cm}
+
+\title{Домашнее задание №4}
+\date{}
+
+\begin{document}
+
+\maketitle
+\Large\flushleft{Тиганов Вадим Игоревич, группа J3212\\ИСУ: 467701}
+
+\section*{Задача 1}
+Вычислить частные производные в заданной точке и проверить дифференцируемость функции в точке $(0, 0)$.
+
+\subsection*{(a) $f(x, y) = \sqrt{x^2 + y^2}$}
+
+\textbf{Вычисление частных производных.} Используя определение, имеем
+\[
+f_x(0, 0) = \lim_{\Delta x \to 0} \frac{f(\Delta x, 0) - f(0, 0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{\sqrt{(\Delta x)^2} - 0}{\Delta x} = \lim_{\Delta x \to 0} \frac{|\Delta x|}{\Delta x}.
+\]
+
+Данный предел не определён: справа ($\Delta x \to 0^+$) он равен $1$, слева ($\Delta x \to 0^-$) равен $-1$. По симметрии производная $f_y(0, 0)$ также не существует.
+
+\textbf{Анализ дифференцируемости.} В точке $(0, 0)$ функция не дифференцируема, так как частные производные не определены.
+
+\subsection*{(b) $f(x, y) = |y|\sin x$}
+
+\textbf{Нахождение частных производных.} Применяя определение, находим
+\[
+f_x(0, 0) = \lim_{\Delta x \to 0} \frac{|0|\sin(\Delta x) - 0}{\Delta x} = 0, \quad f_y(0, 0) = \lim_{\Delta y \to 0} \frac{|\Delta y|\sin 0 - 0}{\Delta y} = 0.
+\]
+
+\textbf{Проверка дифференцируемости.} Исследуем предел
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x, y) - f(0, 0) - f_x(0, 0)x - f_y(0, 0)y}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{|y|\sin x}{\sqrt{x^2 + y^2}}.
+\]
+
+Используя оценку $|\sin x| \leq |x|$, имеем
+\[
+\frac{|y|\sin x}{\sqrt{x^2 + y^2}} \leq \frac{|y||x|}{\sqrt{x^2 + y^2}}.
+\]
+
+Применяя неравенство $2|x||y| \leq x^2 + y^2$, находим
+\[
+\frac{|x||y|}{\sqrt{x^2 + y^2}} \leq \frac{x^2 + y^2}{2\sqrt{x^2 + y^2}} = \frac{1}{2}\sqrt{x^2 + y^2} \to 0.
+\]
+
+Таким образом, предел существует и равен нулю, откуда функция дифференцируема в начале координат с дифференциалом $df(0, 0) = 0$.
+
+\subsection*{(c) $f(x, y) = 2y + \cos\sqrt[3]{xy}$}
+
+\textbf{Расчёт частных производных.} По определению получаем
+\[
+f_x(0, 0) = \lim_{\Delta x \to 0} \frac{2 \cdot 0 + \cos\sqrt[3]{\Delta x \cdot 0} - (2 \cdot 0 + \cos 0)}{\Delta x} = \lim_{\Delta x \to 0} \frac{\cos 0 - 1}{\Delta x} = 0,
+\]
+\[
+f_y(0, 0) = \lim_{\Delta y \to 0} \frac{2\Delta y + \cos\sqrt[3]{0 \cdot \Delta y} - (0 + \cos 0)}{\Delta y} = \lim_{\Delta y \to 0} \frac{2\Delta y}{\Delta y} = 2.
+\]
+
+\textbf{Проверка дифференцируемости.} Необходимо установить, что
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x, y) - f(0, 0) - 0 \cdot x - 2 \cdot y}{\sqrt{x^2 + y^2}} = \lim_{(x,y) \to (0,0)} \frac{\cos(xy)^{1/3} - 1}{\sqrt{x^2 + y^2}} = 0.
+\]
+
+Полагая $t = (xy)^{1/3}$, используем разложение при $t \to 0$:
+\[
+\cos t = 1 - \frac{t^2}{2} + o(t^2),
+\]
+откуда
+\[
+\cos(xy)^{1/3} - 1 = -\frac{(xy)^{2/3}}{2} + o\left((xy)^{2/3}\right).
+\]
+
+Введём обозначение $r = \sqrt{x^2 + y^2}$. Поскольку $|xy| \leq \frac{x^2 + y^2}{2} = \frac{r^2}{2}$, имеем
+\[
+|(xy)^{2/3}| \leq \left(\frac{r^2}{2}\right)^{2/3} = Cr^{4/3}.
+\]
+
+Следовательно,
+\[
+\frac{\cos(xy)^{1/3} - 1}{\sqrt{x^2 + y^2}} \leq \frac{C'r^{4/3}}{r} = C'r^{1/3} \to 0,
+\]
+при $(x, y) \to (0, 0)$. Таким образом, функция дифференцируема в точке $(0, 0)$.
+
+\subsection*{(d) $f(x, y) = \begin{cases} \exp\left(-\frac{1}{x^2+y^2}\right), & (x, y) \neq (0, 0), \\ 0, & (x, y) = (0, 0). \end{cases}$}
+
+\textbf{Вычисление производных.} Используя определение, находим
+\[
+f_x(0, 0) = \lim_{\Delta x \to 0} \frac{f(\Delta x, 0) - 0}{\Delta x} = \lim_{\Delta x \to 0} \frac{e^{-1/(\Delta x)^2}}{\Delta x}.
+\]
+
+Экспонента $e^{-1/t^2}$ убывает при $t \to 0$ быстрее любой степенной функции $t^n$. Полагая $s = 1/|\Delta x|$, получаем, что предел равен нулю. Отсюда $f_x(0, 0) = 0$; аналогично $f_y(0, 0) = 0$.
+
+\textbf{Исследование дифференцируемости.} Проверяем условие:
+\[
+\lim_{(x,y) \to (0,0)} \frac{f(x, y) - 0 - 0 \cdot x - 0 \cdot y}{\sqrt{x^2 + y^2}} = \lim_{r \to 0} \frac{e^{-1/r^2}}{r}.
+\]
+
+Замена $s = 1/r$ приводит к выражению $(e^{-s^2})s \to 0$ при $s \to \infty$, откуда предел равен нулю. Значит, функция дифференцируема в начале координат.
+
+\section*{Задача 2}
+Дана функция
+\[
+f(x, y) = \begin{cases} (x^2 + y^2)\sin\frac{1}{x^2+y^2}, & (x, y) \neq (0, 0), \\ 0, & (x, y) = (0, 0). \end{cases}
+\]
+
+Требуется показать: частные производные определены в окрестности начала координат, в точке $(0, 0)$ они равны нулю, однако терпят разрыв в этой точке; тем не менее функция дифференцируема в $(0, 0)$.
+
+\textbf{Дифференцируемость в начале координат.} Пусть $r^2 = x^2 + y^2$ для $(x, y) \neq (0, 0)$. Тогда $f(x, y) = r^2\sin(1/r^2)$, и
+\[
+\frac{|f(x, y) - 0 - 0 \cdot x - 0 \cdot y|}{\sqrt{x^2 + y^2}} = \frac{r^2|\sin(1/r^2)|}{r} = r|\sin(1/r^2)| \leq r \to 0.
+\]
+
+Таким образом, функция дифференцируема в $(0, 0)$ с частными производными $f_x(0, 0) = f_y(0, 0) = 0$.
+
+\textbf{Производные вне начала координат.} При $(x, y) \neq (0, 0)$ дифференцируем явно:
+\[
+f_x(x, y) = 2x\sin\frac{1}{r^2} + r^2\cos\frac{1}{r^2} \cdot \frac{d}{dx}\frac{1}{r^2}.
+\]
+
+Учитывая, что $\frac{d}{dx}\frac{1}{r^2} = -\frac{2x}{r^4}$, имеем
+\[
+f_x(x, y) = 2x\sin\frac{1}{r^2} - \frac{2x}{r^2}\cos\frac{1}{r^2} \quad (r^2 = x^2 + y^2).
+\]
+
+По аналогии
+\[
+f_y(x, y) = 2y\sin\frac{1}{r^2} - \frac{2y}{r^2}\cos\frac{1}{r^2}.
+\]
+
+\textbf{Отсутствие непрерывности производных.} Рассмотрим поведение $f_x$ вдоль оси $y = 0$ при $x \neq 0$:
+\[
+f_x(x, 0) = 2x\sin\frac{1}{x^2} - \frac{2x}{x^2}\cos\frac{1}{x^2} = 2x\sin\frac{1}{x^2} - \frac{2}{x}\cos\frac{1}{x^2}.
+\]
+
+Слагаемое $-\frac{2}{x}\cos\frac{1}{x^2}$ осциллирует с возрастающей амплитудой $2/|x|$ при $x \to 0$, поэтому предел $\lim_{(x,y) \to (0,0)} f_x(x, y)$ не существует. Поскольку $f_x(0, 0) = 0$, производная $f_x$ терпит разрыв в точке $(0, 0)$. Аналогичное справедливо для $f_y$.
+
+\section*{Задача 3}
+Вычислить дифференциал $df$ функции $f(u)$ в следующих случаях.
+
+\subsection*{(a) $u = x^2 + e^y$}
+Находим дифференциал переменной $u$:
+\[
+du = \frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy = 2x\,dx + e^y\,dy.
+\]
+
+Применяя правило дифференцирования сложной функции, получаем
+\[
+df = f'(u)\,du = f'(x^2 + e^y)(2x\,dx + e^y\,dy).
+\]
+
+\subsection*{(b) $u = xyz$}
+Дифференциал $u$ имеет вид:
+\[
+du = \frac{\partial u}{\partial x}dx + \frac{\partial u}{\partial y}dy + \frac{\partial u}{\partial z}dz = yz\,dx + xz\,dy + xy\,dz.
+\]
+Следовательно,
+\[
+df = f'(u)\,du = f'(xyz)(yz\,dx + xz\,dy + xy\,dz).
+\]
+
+\section*{Задача 4}
+Определить дифференциал $df$ функции $f(u, v)$ в двух случаях.
+
+\subsection*{(a) $u = \frac{x}{y}$, $v = \frac{y}{x}$ (при $x \neq 0$, $y \neq 0$)}
+Вычисляем дифференциалы промежуточных переменных:
+\[
+du = \frac{1}{y}dx - \frac{x}{y^2}dy, \quad dv = -\frac{y}{x^2}dx + \frac{1}{x}dy.
+\]
+
+Используя формулу полного дифференциала, получаем:
+\[
+df = \frac{\partial f}{\partial u}du + \frac{\partial f}{\partial v}dv = f_u\left(\frac{1}{y}dx - \frac{x}{y^2}dy\right) + f_v\left(-\frac{y}{x^2}dx + \frac{1}{x}dy\right).
+\]
+
+\subsection*{(b) $u = xy$, $v = yz$}
+Находим:
+\[
+du = y\,dx + x\,dy, \quad dv = z\,dy + y\,dz.
+\]
+Отсюда
+\[
+df = f_u(y\,dx + x\,dy) + f_v(z\,dy + y\,dz).
+\]
+
+\section*{Задача 5}
+
+\subsection*{(a)}
+Рассмотрим отображение $f: (x, y, z) \to (u, v, w)$, определённое как
+\[
+u = xyz, \quad v = xy - xyz, \quad w = y - xy.
+\]
+
+Построим якобиан $J_f = \frac{\partial(u, v, w)}{\partial(x, y, z)}$:
+\[
+J_f = \begin{pmatrix}
+\frac{\partial u}{\partial x} & \frac{\partial u}{\partial y} & \frac{\partial u}{\partial z} \\
+\frac{\partial v}{\partial x} & \frac{\partial v}{\partial y} & \frac{\partial v}{\partial z} \\
+\frac{\partial w}{\partial x} & \frac{\partial w}{\partial y} & \frac{\partial w}{\partial z}
+\end{pmatrix} = \begin{pmatrix}
+yz & xz & xy \\
+y - yz & x - xz & -xy \\
+-y & 1 - x & 0
+\end{pmatrix}.
+\]
+
+Вычисляя определитель (разложением по третьему столбцу), находим
+\[
+\det J_f = xy^2.
+\]
+
+\subsection*{(b)}
+Для функции $f(x) = (\sin x, \cos x, \tan x)$ и тождественного отображения $g(u) = u$ находим
+\[
+J_f(x) = \begin{pmatrix}
+\frac{d}{dx}\sin x \\
+\frac{d}{dx}\cos x \\
+\frac{d}{dx}\tan x
+\end{pmatrix} = \begin{pmatrix}
+\cos x \\
+-\sin x \\
+\sec^2 x
+\end{pmatrix}.
+\]
+
+Композиция с $g(u) = u$ даёт якобиан
+\[
+J_{f \circ g}(u) = \begin{pmatrix} \cos u \\ -\sin u \\ \sec^2 u \end{pmatrix}.
+\]
+
+\subsection*{(c)}
+Дано отображение $f: (x, y) \to (u, v)$ вида
+\[
+u = x + \frac{y^2}{x} = \frac{x^2 + y^2}{x}, \quad v = \frac{y}{x}, \quad x \neq 0.
+\]
+
+Вычисляем частные производные:
+\[
+\frac{\partial u}{\partial x} = 1 - \frac{y^2}{x^2} = \frac{x^2 - y^2}{x^2}, \quad \frac{\partial u}{\partial y} = \frac{2y}{x},
+\]
+\[
+\frac{\partial v}{\partial x} = -\frac{y}{x^2}, \quad \frac{\partial v}{\partial y} = \frac{1}{x}.
+\]
+
+Таким образом,
+\[
+\det J_f = \frac{x^2 + y^2}{x^3}.
+\]
+
+Для обратного отображения (в точках обратимости) якобиан равен
+\[
+\det J_{f^{-1}} = \frac{1}{\det J_f} = \frac{x^3}{x^2 + y^2}.
+\]
+
+\end{document}

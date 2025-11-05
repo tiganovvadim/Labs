@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }apt\PYG{+w}{ }update
+sudo\PYG{+w}{ }apt\PYG{+w}{ }install\PYG{+w}{ }network\PYGZhy{}manager
+\end{MintedVerbatim}

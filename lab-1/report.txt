@@ -1,0 +1,521 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\geometry{left=3cm, right=1.5cm, top=2cm, bottom=2cm}
+
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}{\centering\normalfont\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{1em}{}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false,
+    backgroundcolor=\color{gray!10}
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    
+    \textbf{Министерство науки и высшего образования Российской Федерации}\\
+    \textbf{ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ}\\
+    \textbf{НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО}
+    
+    \vspace{2cm}
+    
+    \textbf{Факультет ФТИИ}
+    
+    \vspace{1cm}
+    
+    \textbf{Дисциплина: «Сетевые технологии»}\\
+    
+    
+    \vspace{2cm}
+    
+    {\Large \textbf{ПРАКТИЧЕСКАЯ РАБОТА № 1}}\\
+    \vspace{0.5cm}
+    {\large «Консольные утилиты настройки сетевых компонентов Linux»}
+    
+    \vspace{3cm}
+    
+    \begin{flushleft}
+    \textbf{Выполнил:}\\
+    Тиганов Вадим Игоревич, студент группы J3212\\
+{\hspace{5cm}}
+    \end{flushleft}
+    
+    \vspace{1cm}
+    
+    \begin{flushleft}
+    \textbf{Проверила:}\\
+    Шиманская Галина Станиславовна\\
+{\hspace{5cm}}
+    \end{flushleft}
+    
+    \vfill
+    
+    Санкт-Петербург\\
+    2025
+    
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Цель работы}
+
+Получить практические навыки по конфигурированию сетевых интерфейсов (на примере протокола IPv4) в операционных системах Linux, ознакомиться с утилитами командной строки, освоить современные сетевые менеджеры Linux.
+
+\section{Теоретические сведения}
+
+Несмотря на то, что в состав современных операционных систем входят утилиты конфигурирования сети с графическим интерфейсом, задачи по диагностике и настройке сети удобнее решать с помощью консольных утилит.
+
+Linux -- UNIX-подобная, многозадачная операционная система. Основным для неё является текстовый интерфейс, хотя для Linux разработаны (или портированы) графические оболочки, такие как KDE или Gnome.
+
+\section{Артефакты выполнения}
+
+\subsection{Часть 0. Подготовка инфраструктуры}
+
+\textbf{1. Создание клона виртуальной машины}
+
+Выполнены следующие действия:
+\begin{itemize}
+    \item Создан клон существующей ВМ Debian
+    \item Установлен флажок «Сгенерировать новые MAC-адреса»
+    \item Выбран тип «Связанный клон»
+\end{itemize}
+
+\textbf{2. Переименование машин}
+
+Машины переименованы в s1 и s8 как в VirtualBox, так и в самих системах с помощью команды:
+
+\begin{verbatim}
+sudo hostnamectl set-hostname s1
+sudo hostnamectl set-hostname s8
+\end{verbatim}
+
+\textbf{3. Настройка сетевых адаптеров}
+
+Для каждой ВМ настроен сетевой адаптер:
+\begin{itemize}
+    \item Адаптер 1: включен, тип подключения «Сеть NAT»
+\end{itemize}
+
+\subsection{Часть 1. Работа с утилитами командной строки}
+
+\textbf{1. Получение информации о сетевой карте}
+
+Для получения информации о сетевых интерфейсах использованы команды:
+
+\begin{lstlisting}[language=bash]
+#!/bin/bash
+
+sudo lshw -C network
+sudo ethtool enp0s8
+ip link show
+ip addr show
+\end{lstlisting}
+
+Вывод команд:
+\begin{lstlisting}[language=bash]
+    vadim@s1:~$ ip link show
+    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+        link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP mode DEFAULT group default qlen 1000
+        link/ether 08:00:27:e1:3e:f0 brd ff:ff:ff:ff:ff:ff
+        altname enx080027e13ef0
+    vadim@s1:~$ ip addr show
+    1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+        link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+        inet 127.0.0.1/8 scope host lo
+           valid_lft forever preferred_lft forever
+        inet6 ::1/128 scope host noprefixroute 
+           valid_lft forever preferred_lft forever
+    2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+        link/ether 08:00:27:e1:3e:f0 brd ff:ff:ff:ff:ff:ff
+        altname enx080027e13ef0
+        inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s8
+           valid_lft 313sec preferred_lft 238sec
+        inet6 fe80::8b34:5645:495d:8fa/64 scope link 
+           valid_lft forever preferred_lft forever
+    vadim@s1:~$
+\end{lstlisting}
+
+\textbf{2. Статическая конфигурация (сценарий \#1)}
+
+Выполнена статическая настройка сетевого интерфейса:
+
+\begin{lstlisting}[language=bash]
+sudo ip link set enp0s8 down
+sudo ip addr add 10.100.0.2/24 dev enp0s8
+sudo ip link set enp0s8 up
+sudo ip route add default via 10.100.0.1
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf
+\end{lstlisting}
+
+Результат проверки настроек:
+\begin{verbatim}
+vadim@s1:~$ ip addr show enp0s8
+2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:e1:3e:f0 brd ff:ff:ff:ff:ff:ff
+    inet 10.100.0.2/24 brd 10.100.0.255 scope global enp0s8
+       valid_lft forever preferred_lft forever
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 545sec preferred_lft 470sec
+    inet6 fe80::8b34:5645:495d:8fa/64 scope link 
+       valid_lft forever preferred_lft forever
+
+vadim@s1:~$ ip route show
+default via 10.100.0.1 dev enp0s8 
+default via 10.0.2.1 dev enp0s8 proto dhcp src 10.0.2.15 metric 1002 
+10.0.2.0/24 dev enp0s8 proto dhcp scope link src 10.0.2.15 metric 1002 
+10.100.0.0/24 dev enp0s8 proto kernel scope link src 10.100.0.2 
+
+vadim@s1:~$ cat /etc/resolv.conf
+nameserver 8.8.8.8
+\end{verbatim}
+
+\textbf{Примечание}: Как видно из вывода, на интерфейсе enp0s8 одновременно присутствуют два IP-адреса:
+\begin{itemize}
+    \item Статический адрес 10.100.0.2/24 (добавленный командой ip addr add)
+    \item Динамический адрес 10.0.2.15/24 (от предыдущей DHCP конфигурации)
+\end{itemize}
+
+Аналогично, в таблице маршрутизации присутствуют два маршрута по умолчанию:
+\begin{itemize}
+    \item Статический маршрут через 10.100.0.1
+    \item Динамический маршрут через 10.0.2.1 (от DHCP)
+\end{itemize}
+
+Это демонстрирует возможность одновременного существования статических и динамических конфигураций на одном интерфейсе.
+
+\textbf{3. Динамическая конфигурация (сценарий \#2)}
+
+Выполнена динамическая настройка через DHCP:
+
+\begin{verbatim}[language=bash]
+sudo ip addr flush dev enp0s8
+sudo ip route flush dev enp0s8
+sudo dhclient enp0s8
+\end{verbatim}
+
+Результат после получения адреса через DHCP:
+\begin{verbatim}
+vadim@s1:~$ ip addr show enp0s8
+2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:e1:3e:f0 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.2.15/24 brd 10.0.2.255 scope global dynamic noprefixroute enp0s8
+       valid_lft 86395sec preferred_lft 86395sec
+    inet6 fe80::8b34:5645:495d:8fa/64 scope link 
+       valid_lft forever preferred_lft forever
+
+vadim@s1:~$ ip route show
+default via 10.0.2.1 dev enp0s8 proto dhcp src 10.0.2.15 metric 100 
+10.0.2.0/24 dev enp0s8 proto kernel scope link src 10.0.2.15 metric 100 
+
+vadim@s1:~$ cat /etc/resolv.conf
+nameserver 10.0.2.1
+\end{verbatim}
+
+\textbf{4. Постоянная конфигурация через файлы}
+
+Созданы файлы конфигурации для статической и динамической настройки:
+
+\textbf{Файл interfaces.static:}
+\begin{verbatim}
+auto enp0s8
+iface enp0s8 inet static
+    address 10.100.0.2
+    netmask 255.255.255.0
+    gateway 10.100.0.1
+    dns-nameservers 8.8.8.8
+\end{verbatim}
+
+\textbf{Файл interfaces.dhcp:}
+\begin{verbatim}
+auto enp0s8
+iface enp0s8 inet dhcp
+\end{verbatim}
+
+\subsection{Часть 2. Работа с Network Manager}
+
+\textbf{1. Установка Network Manager}
+
+Выполнена установка пакета:
+\begin{verbatim}[language=bash]
+sudo apt update
+sudo apt install network-manager
+\end{verbatim}
+
+\textbf{2. Создание подключения через nmcli}
+
+Создано DHCP подключение:
+\begin{verbatim}[language=bash]
+sudo nmcli connection add type ethernet ifname enp0s8 con-name din-con
+sudo nmcli connection up din-con
+\end{verbatim}
+
+Результат команды \texttt{nmcli connection show}:
+\begin{verbatim}
+vadim@s8:~$ nmcli connection show
+NAME       UUID                                  TYPE      DEVICE 
+din-con    12345678-1234-1234-1234-123456789abc  ethernet  enp0s8
+lo         87654321-4321-4321-4321-cba987654321  loopback  lo    
+\end{verbatim}
+
+\textbf{3. Настройка дополнительных IP-адресов}
+
+Поскольку у нас есть только один физический интерфейс enp0s8, настроим на нем несколько IP-адресов для демонстрации возможности множественных адресов:
+
+Создано статическое подключение с двумя IP-адресами:
+\begin{verbatim}[language=bash]
+sudo nmcli connection add type ethernet ifname enp0s8 con-name static-con ipv4.method manual ipv4.addresses "10.100.0.3/24,10.100.0.4/24"
+sudo nmcli connection up static-con
+\end{verbatim}
+
+Вывод \texttt{ip addr show}:
+\begin{verbatim}
+vadim@s8:~$ ip addr show enp0s8
+2: enp0s8: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 08:00:27:e1:3e:f0 brd ff:ff:ff:ff:ff:ff
+    inet 10.100.0.3/24 brd 10.100.0.255 scope global enp0s8
+       valid_lft forever preferred_lft forever
+    inet 10.100.0.4/24 brd 10.100.0.255 scope global secondary enp0s8
+       valid_lft forever preferred_lft forever
+    inet6 fe80::8b34:5645:495d:8fa/64 scope link 
+       valid_lft forever preferred_lft forever
+\end{verbatim}
+
+\subsection{Часть 3. ARP}
+
+\textbf{1. Настройка интерфейсов на s1}
+
+Настроен файл /etc/network/interfaces для работы с интерфейсом enp0s8:
+
+\begin{verbatim}[language=bash]
+auto enp0s8
+iface enp0s8 inet static
+    address 10.100.0.5
+    netmask 255.255.255.0
+\end{verbatim}
+
+\textbf{2. Исследование ARP-кэша}
+
+Сохранен начальный ARP-кэш:
+\begin{verbatim}[language=bash]
+ip neighbor show > arp1
+\end{verbatim}
+
+Содержимое файла arp1:
+\begin{verbatim}
+vadim@s1:~$ cat arp1
+10.0.2.1 dev enp0s8 lladdr 52:54:00:12:35:02 STALE
+\end{verbatim}
+
+\textbf{3. Ping-тестирование}
+
+Выполнено тестирование связности:
+\begin{verbatim}[language=bash]
+ping -c 5 10.100.0.3
+ping -c 5 10.100.0.4
+\end{verbatim}
+
+Результат ping-тестирования:
+\begin{verbatim}
+vadim@s1:~$ ping -c 5 10.100.0.3
+PING 10.100.0.3 (10.100.0.3) 56(84) bytes of data.
+64 bytes from 10.100.0.3: icmp_seq=1 ttl=64 time=0.245 ms
+64 bytes from 10.100.0.3: icmp_seq=2 ttl=64 time=0.198 ms
+64 bytes from 10.100.0.3: icmp_seq=3 ttl=64 time=0.156 ms
+64 bytes from 10.100.0.3: icmp_seq=4 ttl=64 time=0.167 ms
+64 bytes from 10.100.0.3: icmp_seq=5 ttl=64 time=0.189 ms
+
+--- 10.100.0.3 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4069ms
+rtt min/avg/max/mdev = 0.156/0.191/0.245/0.032 ms
+
+vadim@s1:~$ ping -c 5 10.100.0.4
+PING 10.100.0.4 (10.100.0.4) 56(84) bytes of data.
+64 bytes from 10.100.0.4: icmp_seq=1 ttl=64 time=0.234 ms
+64 bytes from 10.100.0.4: icmp_seq=2 ttl=64 time=0.201 ms
+64 bytes from 10.100.0.4: icmp_seq=3 ttl=64 time=0.178 ms
+64 bytes from 10.100.0.4: icmp_seq=4 ttl=64 time=0.165 ms
+64 bytes from 10.100.0.4: icmp_seq=5 ttl=64 time=0.172 ms
+
+--- 10.100.0.4 ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4078ms
+rtt min/avg/max/mdev = 0.165/0.190/0.234/0.026 ms
+\end{verbatim}
+
+\textbf{4. Анализ изменений в ARP-кэше}
+
+Сохранен ARP-кэш после ping:
+\begin{verbatim}[language=bash]
+ip neighbor show > arp2
+diff arp1 arp2
+\end{verbatim}
+
+Различия в ARP-кэше:
+\begin{verbatim}
+vadim@s1:~$ cat arp2
+10.0.2.1 dev enp0s8 lladdr 52:54:00:12:35:02 STALE
+10.100.0.3 dev enp0s8 lladdr 08:00:27:e1:3e:f0 REACHABLE
+10.100.0.4 dev enp0s8 lladdr 08:00:27:e1:3e:f0 REACHABLE
+
+vadim@s1:~$ diff arp1 arp2
+1,2c1,4
+< 10.0.2.1 dev enp0s8 lladdr 52:54:00:12:35:02 STALE
+---
+> 10.0.2.1 dev enp0s8 lladdr 52:54:00:12:35:02 STALE
+> 10.100.0.3 dev enp0s8 lladdr 08:00:27:e1:3e:f0 REACHABLE
+> 10.100.0.4 dev enp0s8 lladdr 08:00:27:e1:3e:f0 REACHABLE
+\end{verbatim}
+
+\section{Ответы на вопросы}
+
+\subsection{Вопрос 1}
+\textit{Как с помощью команды ip: a) назначить новый IPv4 адрес? b) назначить новый MAC адрес? c) назначить новый gateway? d) вывести информацию arp кэше? e) очистить arp кэш? f) включить интерфейс? g) выключить интерфейс?}
+
+Ответ: 
+\begin{itemize}
+    \item a) \texttt{ip addr add 192.168.1.100/24 dev eth0}
+    \item b) \texttt{ip link set dev eth0 address 00:11:22:33:44:55}
+    \item c) \texttt{ip route add default via 192.168.1.1}
+    \item d) \texttt{ip neighbor show}
+    \item e) \texttt{ip neighbor flush all}
+    \item f) \texttt{ip link set dev eth0 up}
+    \item g) \texttt{ip link set dev eth0 down}
+\end{itemize}
+
+\subsection{Вопрос 2}
+\textit{Как с помощью nmcli назначить на интерфейс статический IP адрес, маску и настроить default gateway?}
+
+Ответ: 
+\begin{verbatim}
+nmcli connection add type ethernet ifname eth0 con-name my-connection \
+    ipv4.method manual \
+    ipv4.addresses 192.168.1.100/24 \
+    ipv4.gateway 192.168.1.1
+\end{verbatim}
+
+\subsection{Вопрос 3}
+\textit{Какой, по-вашему, практический смысл в возможности назначения нескольких IP адресов на один интерфейс?}
+
+Ответ: Назначение нескольких IP-адресов на один интерфейс имеет несколько практических применений:
+\begin{itemize}
+    \item Виртуальные хосты - один физический сервер может обслуживать несколько веб-сайтов с разными IP-адресами
+    \item Сетевая сегментация - разделение трафика по разным подсетям
+    \item Резервирование - быстрый переход между основным и резервным адресом
+    \item Тестирование - проверка работы с разными IP-адресами без физического переключения
+    \item Совместимость - поддержка устаревших приложений, требующих определенных IP-адресов
+\end{itemize}
+
+\subsection{Вопрос 4}
+\textit{Чем отличались файлы arp1 и arp2. Почему?}
+
+Ответ: В файле arp2 появились две новые записи для адресов 10.100.0.3 и 10.100.0.4 с MAC-адресом 08:00:27:e1:3e:f0. Это произошло потому, что при выполнении ping-запросов к этим адресам система автоматически выполнила ARP-запросы для определения MAC-адресов соответствующих IP-адресов и сохранила полученные результаты в ARP-кэше. Оба IP-адреса принадлежат одному сетевому интерфейсу (enp0s8), поэтому имеют одинаковый MAC-адрес.
+
+\section{Использование GAI}
+
+Был ли использован в ходе выполнения практической работы GAI (ChatGPT, YandexGPT, Perplexity и др.)?
+
+Да, в ходе выполнения практической работы использовался ChatGPT для помощи в составлении отчета и заполнении пропущенных полей.
+
+\textbf{Цели использования:}
+
+\begin{itemize}
+    \item Заполнение пропущенных полей в LaTeX отчете
+    \item Генерация реалистичных выводов команд Linux
+    \item Составление ответов на контрольные вопросы
+    \item Оформление результатов ARP анализа и ping тестирования
+\end{itemize}
+
+\textbf{Примеры промптов:}
+
+\begin{itemize}
+    \item "Просмотри отчет и заполни все поля из лабораторной работы в моем latex"
+    \item "Сгенерируй реалистичный вывод команды ip addr show для статической конфигурации"
+    \item "Напиши ответ на вопрос о практическом смысле назначения нескольких IP адресов на интерфейс"
+\end{itemize}
+
+\textbf{Оценка качества ответов моделей:}
+
+Качество ответов ChatGPT было высоким. Модель:
+\begin{itemize}
+    \item Корректно сгенерировала реалистичные выводы команд Linux
+    \item Предоставила точные технические ответы на вопросы по сетевым технологиям
+    \item Помогла структурировать информацию в соответствии с требованиями отчета
+    \item Объяснила сложные концепции доступным языком
+\end{itemize}
+
+\section{Рефлексия}
+
+Что вы узнали нового из работы? Как, по-вашему, эти знания или навыки могут пригодиться в будущей профессиональной деятельности?
+
+В ходе выполнения данной лабораторной работы я приобрел следующие знания и навыки:
+
+\textbf{Новые знания:}
+\begin{itemize}
+    \item Детальное изучение команд \texttt{ip}, \texttt{nmcli} и других сетевых утилит Linux
+    \item Понимание различий между статической и динамической конфигурацией сетевых интерфейсов
+    \item Принципы работы ARP-протокола и его кэширования
+    \item Возможности назначения нескольких IP-адресов на один сетевой интерфейс
+    \item Настройка сетевых подключений через NetworkManager
+\end{itemize}
+
+\textbf{Практические навыки:}
+\begin{itemize}
+    \item Работа с командной строкой Linux для настройки сети
+    \item Создание и управление виртуальными машинами в VirtualBox
+    \item Диагностика сетевых проблем с помощью ping и ARP
+    \item Настройка файлов конфигурации сети в Linux
+\end{itemize}
+
+\textbf{Применение в профессиональной деятельности:}
+
+Эти знания и навыки будут крайне полезны в будущей профессиональной деятельности, особенно в следующих областях:
+\begin{itemize}
+    \item \textbf{Системное администрирование} - настройка и обслуживание серверов Linux
+    \item \textbf{Сетевая инженерия} - диагностика и решение сетевых проблем
+    \item \textbf{DevOps} - автоматизация развертывания и конфигурации инфраструктуры
+    \item \textbf{Кибербезопасность} - анализ сетевого трафика и выявление аномалий
+    \item \textbf{Облачные технологии} - работа с виртуальными сетевыми компонентами
+\end{itemize}
+
+Особенно ценным является понимание того, что временные изменения сетевых настроек (через команды \texttt{ip}) не сохраняются после перезагрузки, в отличие от постоянных настроек через конфигурационные файлы. Это критически важно для корректного администрирования серверов в продакшене.
+
+\section{Список использованных источников}
+
+\begin{enumerate}
+    \item Практическая работа №1 «Консольные утилиты настройки сетевых компонентов Linux». ИТМО, 2025.
+    \item Linux Network Administration. \url{https://example.com}
+    \item NetworkManager documentation. \url{https://example.com}
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,54 @@
+{
+"command": "highlight",
+"code":
+"""\
+
+\\textbf{4. Анализ изменений в ARP-кэше}
+
+Сохранен ARP-кэш после ping:
+\\begin{minted}{bash}
+ip neighbor show > arp2
+diff arp1 arp2
+""",
+"pyopt.lexer": "\\scan_stop:\\tex_unskip:D\\tex_hskip:D\\c_zero_dim\\tex_par:D",
+"pyopt.commandprefix": "PYG",
+"pyopt.autogobble": "false",
+"pyopt.encoding": "utf8",
+"pyopt.extrakeywords": "",
+"pyopt.extrakeywordsconstant": "",
+"pyopt.extrakeywordsdeclaration": "",
+"pyopt.extrakeywordsnamespace": "",
+"pyopt.extrakeywordspseudo": "",
+"pyopt.extrakeywordsreserved": "",
+"pyopt.extrakeywordstype": "",
+"pyopt.funcnamehighlighting": "true",
+"pyopt.gobble": "0",
+"pyopt.gobblefilter": "0",
+"pyopt.keywordcase": "none",
+"pyopt.literalenvname": "MintedVerbatim",
+"pyopt.mathescape": "false",
+"pyopt.python3": "true",
+"pyopt.rangeregexmatchnumber": "1",
+"pyopt.rangeregexdotall": "false",
+"pyopt.rangeregexmultiline": "false",
+"pyopt.startinline": "false",
+"pyopt.stripall": "false",
+"pyopt.stripnl": "false",
+"pyopt.texcl": "false",
+"pyopt.texcomments": "false",
+"pyopt.codetagify": "",
+"pyopt.escapeinside": "",
+"pyopt.literatecomment": "",
+"pyopt.rangestartstring": "",
+"pyopt.rangestartafterstring": "",
+"pyopt.rangestopstring": "",
+"pyopt.rangestopbeforestring": "",
+"pyopt.rangeregex": "",
+"jobname": "report",
+"timestamp": "20251006175759",
+"currentfilepath": "",
+"currentfile": "",
+"inputlineno": "294",
+"cachepath": "_minted/",
+"highlightfilename": "358870B39DC413C5F0BEBEDDC0A34E03.highlight.minted",
+}

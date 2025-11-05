@@ -1,0 +1,264 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{geometry}
+\usepackage{fancyhdr}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\geometry{left=3cm, right=1.5cm, top=2cm, bottom=2cm}
+
+\onehalfspacing
+
+\usepackage{titlesec}
+\titleformat{\section}{\centering\normalfont\bfseries}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection}{1em}{}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    showstringspaces=false,
+    backgroundcolor=\color{gray!10}
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\begin{document}
+
+\begin{titlepage}
+    \centering
+    
+    \textbf{Министерство науки и высшего образования Российской Федерации}\\
+    \textbf{ФЕДЕРАЛЬНОЕ ГОСУДАРСТВЕННОЕ АВТОНОМНОЕ ОБРАЗОВАТЕЛЬНОЕ УЧРЕЖДЕНИЕ ВЫСШЕГО ОБРАЗОВАНИЯ}\\
+    \textbf{НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИТМО}
+    
+    \vspace{2cm}
+    
+    \textbf{Факультет ФТИИ}
+    
+    \vspace{1cm}
+    
+    \textbf{Дисциплина: «Сетевые технологии»}\\
+    
+    
+    \vspace{2cm}
+    
+    {\Large \textbf{ПРАКТИЧЕСКАЯ РАБОТА № 2}}\\
+    \vspace{0.5cm}
+    {\large «Мониторинг сетевого трафика на хосте на примере работы с
+    утилитами диагностики и мониторинга сетевых соединений в Linux»}
+    
+    \vspace{3cm}
+    
+    \begin{flushleft}
+    \textbf{Выполнил:}\\
+    Тиганов Вадим Игоревич, студент группы J3212\\
+    ИСУ: 467701
+{\hspace{5cm}}
+    \end{flushleft}
+    
+    \vspace{1cm}
+    
+    \begin{flushleft}
+    \textbf{Проверила:}\\
+    Шиманская Галина Станиславовна\\
+{\hspace{5cm}}
+    \end{flushleft}
+    
+    \vfill
+    
+    Санкт-Петербург\\
+    2025
+    
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Цель работы}
+
+Получить практические навыки мониторинга сетевого трафика и диагностирования сетевых соединений на хосте Linux с использованием консольных утилит: \texttt{ss}, \texttt{lsof}, \texttt{tcpdump}/\texttt{tshark}, \texttt{iftop}/\texttt{nload}/\texttt{bmon}, а также базовых средств \texttt{ip} и \texttt{ethtool}.
+
+
+
+\section{Артефакты выполнения}
+
+% Ниже оставлены структурные места для вставки артефактов. Заполните скриншотами/листингами.
+
+\subsection{Часть 1. Настройка инфраструктуры}
+ВМ c7-1/c7-2, NAT в VirtualBox, DHCP-адреса, проверка ping внешней сети, установка утилит (bmon/nload/iftop, nethogs, mtr, traceroute, vnstat, nc)
+
+\subsection{Часть 2. Диагностика соединения}
+Команды и выводы по \texttt{ping}, запуск \texttt{mtr} к \texttt{www.itmo.ru}, сохранение расширенной статистики на 40 пакетов:
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\textwidth]{9.jpg}
+    \caption{Вывод команды \texttt{ping}}
+\end{figure}
+
+\subsection{Часть 3. Работа с Wireshark}
+Настройка захвата (ограничение 5 МБ), статистика — самый активный узел, широковещательный «говорун», самый активный TCP-порт; графики Io Graphs (TCP/UDP вместе); Flow Graph по HTTPS; фильтры отображения для DNS/кадров хоста/широковещаний:
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{11.jpg}
+    wireshark 1
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{12.jpg}
+    wireshark 2
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{14.jpg}
+    wireshark 3
+\end{center}
+
+\begin{center}
+    \includegraphics[width=1\textwidth]{15.jpg}
+    wireshark 4 
+\end{center}
+
+
+\subsection{Часть 4. Определение маршрута прохождения пакета}
+\textit{Место для: команды \texttt{traceroute} с ICMP/UDP/TCP до 8.8.8.8 и проверка фрагментации IPv4 — команды и выводы}\vspace{0.5cm}
+\begin{center}
+    \includegraphics[width=1\textwidth]{10.jpg}
+    traceroute 8.8.8.8
+\end{center}
+
+\subsection{Часть 5. Текущий мониторинг сетевых интерфейсов}
+Место для: \texttt{ping -f} с c7-2 на внутренний интерфейс c7-1;
+\begin{center}
+    \includegraphics[width=1\textwidth]{1.jpg}
+    Проверим ip адреса
+\end{center}
+\begin{center}
+    \includegraphics[width=1\textwidth]{2.jpg}
+    Пингуем для проверки соединения
+\end{center}
+\subsection{Часть 6. Диагностика работы приложений через сеть}
+SSH-сессии; вывод \texttt{netstat}/\texttt{ss} — прослушиваемые порты и установленные соединения; скрипт агрегации соединений по порту (по умолчанию 22); закрытие сессий — вывод:
+\begin{center}
+    \includegraphics[width=1\textwidth]{3.jpg}
+    tcpdump
+\end{center}
+\begin{center}
+    \includegraphics[width=1\textwidth]{4.jpg}
+    netstat
+\end{center}
+\begin{center}
+    \includegraphics[width=1\textwidth]{5.jpg}
+    bmon
+\end{center}
+\begin{center}
+    \includegraphics[width=1\textwidth]{6.jpg}
+    Дополнительный мониторинг
+\end{center}
+\begin{center}
+    \includegraphics[width=1\textwidth]{8.jpg}
+    Отправим Hello World по SSH
+\end{center}
+
+\section{Ответы на вопросы и задания}
+
+\begin{enumerate}
+    \item \textbf{По какому протоколу работает утилита mtr? Как это можно определить?}\\
+    По умолчанию \texttt{mtr} в Linux использует \textbf{ICMP Echo} (Echo Request/Reply) аналогично \texttt{traceroute -I}. Определить можно по захвату \texttt{tcpdump/wireshark} (видны ICMP Echo), либо явно переключая режимы \texttt{-u} (UDP) и \texttt{-T} (TCP) и наблюдая изменение типа пакетов.
+
+    \item \textbf{Опишите значения столбцов статистики, выводимой утилитой mtr. Какие еще статистики доступны в mtr кроме основных?}\\
+    Базовые столбцы: \textit{Loss\%} — потери по хопу; \textit{Snt} — число зондов; \textit{Last} — время последнего ответа; \textit{Avg} — средняя RTT; \textit{Best} — минимальная RTT; \textit{Wrst} — максимальная RTT; \textit{StDev} — стандартное отклонение. Дополнительно доступны отчеты (\texttt{--report}, \texttt{--report-cycles}), форматы \texttt{--json}/\texttt{--xml}, отображение \texttt{--show-ips}/AS/GeoIP, а также \textit{Jitter} в некоторых сборках.
+
+    \item \textbf{Какие типы кадров Ethernet бывают, в чем их отличия?}\\
+    \textit{Ethernet II} (поле EtherType, наиболее распространен); \textit{IEEE 802.3 LLC} (длина + LLC заголовок); \textit{802.3 SNAP} (LLC+SNAP для индикации протокола); \textit{802.1Q VLAN}/QinQ (теги VLAN); служебные кадры типа \textit{PAUSE 802.3x}, \textit{LLDP}. Отличаются форматом полей заголовка и наличием тегов/LLC.
+
+    \item \textbf{На какие адреса сетевого уровня осуществляются широковещательные рассылки?}\\
+    В IPv4: \textbf{255.255.255.255} (ограниченный широковещательный) и \textbf{направленный широковещательный} адрес сети (например, 192.168.1.255/24). В IPv6 широковещания нет — используется многоадресная рассылка (\texttt{ff00::/8}).
+
+    \item \textbf{На какой канальный адрес осуществляются широковещательные рассылки?}\\
+    На MAC-адрес \textbf{ff:ff:ff:ff:ff:ff}.
+
+    \item \textbf{Для чего применяются перехваченные широковещательные рассылки в Части 3?}\\
+    Примеры: \textit{ARP Request} (разрешение IP→MAC), \textit{DHCP Discover/Offer} (получение параметров IP-сети), \textit{mDNS/LLMNR/NBNS} (локальное разрешение имён), а также сервисные рассылки (например, \textit{STP/LLDP}). Требовалось определить назначение минимум трёх таких рассылок.
+
+    \item \textbf{Как изменяется загрузка интерфейса в Части 5. п. 3? Почему?}\\
+    При увеличении размера ICMP-пакета (100→60100 байт) \textbf{доля заголовочного оверхеда уменьшается}, а \textbf{битовая загрузка} интерфейса при flood растёт до упора в пропускную способность/ограничения ядра; частота пакетов (pps) падает. Итог: использование канала увеличивается примерно пропорционально полезной нагрузке до достижения пределов CPU/линейной скорости.
+
+    \item \textbf{На каком уровне модели OSI работает vnstat?}\\
+    \texttt{vnstat} собирает счётчики интерфейсов из ядра (\texttt{/proc/net/dev}), то есть оперирует \textbf{на канальном уровне (L2)} независимо от протоколов L3/L4.
+\end{enumerate}
+
+\section{Использование GAI}
+
+Был ли использован в ходе выполнения практической работы GAI (ChatGPT, YandexGPT и др.)?
+
+Да, для помощи в структуре отчета, формулировках теоретических ответов и оформления LaTeX.
+
+\textbf{Цели использования:}
+
+\begin{itemize}
+    \item Подготовка шаблона разделов и заглушек под артефакты
+    \item Вычитка и сжатие теоретических формулировок
+\end{itemize}
+
+
+\textbf{Оценка качества ответов моделей:}
+
+Качество ответов ChatGPT было высоким. Модель:
+\begin{itemize}
+    \item Помогла структурировать материал и сделать листинг более читаемым
+    \item Дала корректные примеры фильтров и ключей для утилит (особенно для wireshark)
+\end{itemize}
+
+\section{Рефлексия}
+
+Что вы узнали нового из работы? Как, по-вашему, эти знания или навыки могут пригодиться в будущей профессиональной деятельности?
+
+В ходе выполнения данной лабораторной работы я приобрел следующие знания и навыки:
+
+\textbf{Новые знания:}
+\begin{itemize}
+    \item Различия между инвентаризацией сокетов (\texttt{ss}/\texttt{lsof}) и пакетным анализом \\ (\texttt{tcpdump}/\texttt{tshark})
+    \item Интерпретация состояний TCP и счетчиков интерфейса
+    \item Подходы к фильтрации трафика с помощью BPF-выражений
+\end{itemize}
+
+\textbf{Практические навыки:}
+\begin{itemize}
+    \item Быстрая диагностика «что слушает порт» и «кто держит соединение»
+    \item Прицельный захват и разбор трафика, запись/чтение PCAP
+    \item Анализ пропускной способности и выявление узких мест по интерфейсам
+\end{itemize}
+
+\textbf{Применение в профессиональной деятельности:}
+\begin{itemize}
+    \item \textbf{Системное администрирование}: оперативная диагностика сетевых инцидентов
+    \item \textbf{DevOps/SRE}: воспроизведение проблем, профилирование сетевых зависимостей сервисов
+    \item \textbf{Безопасность}: сетевой Threat Hunting и анализ аномалий
+\end{itemize}
+
+\section{Список использованных источников}
+
+\begin{enumerate}
+    \item man-pages: \texttt{ss(8)}, \texttt{tcpdump(8)}, \texttt{tshark(1)}, \texttt{lsof(8)}, \texttt{ip-link(8)}, \texttt{ethtool(8)}
+    \item \url{https://www.tcpdump.org/manpages/tcpdump.1.html}
+    \item \url{https://www.wireshark.org/docs/wsug_html_chunked/}
+    \item \url{https://www.kernel.org/doc/Documentation/networking/}
+\end{enumerate}
+
+\end{document}

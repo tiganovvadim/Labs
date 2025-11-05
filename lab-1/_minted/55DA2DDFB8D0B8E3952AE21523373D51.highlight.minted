@@ -1,0 +1,4 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+sudo\PYG{+w}{ }nmcli\PYG{+w}{ }connection\PYG{+w}{ }add\PYG{+w}{ }\PYG{n+nb}{type}\PYG{+w}{ }ethernet\PYG{+w}{ }ifname\PYG{+w}{ }enp0s3\PYG{+w}{ }con\PYGZhy{}name\PYG{+w}{ }din\PYGZhy{}con
+sudo\PYG{+w}{ }nmcli\PYG{+w}{ }connection\PYG{+w}{ }up\PYG{+w}{ }din\PYGZhy{}con
+\end{MintedVerbatim}

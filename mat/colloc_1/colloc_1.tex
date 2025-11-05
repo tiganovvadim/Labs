@@ -1,0 +1,422 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\geometry{margin=2cm}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Определение}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\title{Коллоквиум 1. Математический анализ}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section{Топологическое пространство. Примеры. База топологии. Окрестность точки. Различные базы плоскости.}
+
+\begin{itemize}
+    \item \textbf{Топология (Определение 1):}
+    Пусть $X$ — некоторое множество, $\tau$ — некоторая система подмножеств $X$. Говорят, что $\tau$ есть \textbf{топология} или \textbf{топологическая структура}, если выполнены следующие аксиомы:
+    \begin{enumerate}
+        \item $\emptyset\in\tau$, $X\in\tau$.
+        \item Объединение любого семейства множеств из $\tau$ также принадлежит $\tau$.
+        \item Пересечение любого конечного семейства множеств из $\tau$ также принадлежит $\tau$.
+    \end{enumerate}
+    \item \textbf{Топологическое пространство:} Пара $(X, \tau)$ называется \textbf{топологическим пространством}.
+    \item \textbf{Окрестность точки (Определение 3):} \textbf{Окрестностью точки} топологического пространства называют любое открытое множество, содержащее эту точку.
+    \item \textbf{База топологии (Определение 4):} \textbf{Базой топологического пространства} $(X, \tau)$ (или \textbf{базой топологии}) называется такое семейство $\mathcal{B}$ открытых подмножеств $X$, что каждое непустое открытое множество $G\in\tau$ является объединением некоторой совокупности элементов семейства $\mathcal{B}$.
+    \item \textbf{Различные базы плоскости:}
+    \begin{itemize}
+        \item $\Sigma^{2}-(x-a)^{2}+(y-b)^{2}<r^{2}$ (открытые круги).
+        \item $\Sigma^{\infty}-\max(|x-a|,|x-b|)<r$ (открытые квадраты).
+        \item $\Sigma^{1}-|x-a|+|y-b|<r$ (открытые ромбы).
+    \end{itemize}
+\end{itemize}
+
+\section{Метрические пространства. Аксиомы метрики.}
+
+\begin{itemize}
+    \item \textbf{Метрика (Определение 5):} Функция $\rho:X\times X\rightarrow\mathbb{R}^{+}$ называется \textbf{метрикой} на $X$, если:
+    \begin{enumerate}
+        \item $\rho(x,y)=0$ тогда и только тогда, когда $x=y$.
+        \item $\rho(x,y)=\rho(y,x)\forall x,y\in X$.
+        \item $\rho(x,y)\le\rho(x,z)+\rho(z,y)\forall x,y,z\in X$ (\textbf{неравенство треугольника}).
+    \end{enumerate}
+    \item \textbf{Метрическое пространство:} Пара $(X, \rho)$ называется \textbf{метрическим пространством}.
+\end{itemize}
+
+\section{Нормированные пространства. Аксиомы нормы.}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Строгие формулировки \textbf{нормы} и ее \textbf{аксиом} \textbf{отсутствуют} в предоставленном конспекте.
+
+\section{Неравенство Коши-Буняковского.}
+
+\begin{itemize}
+    \item \textbf{Теорема 1 (Неравенство Коши-Буняковского-Шварца):} В евклидовом пространстве $X$ для векторов $x, y$ справедливо неравенство:
+    $$\langle x,y\rangle^{2}\le\langle x,x\rangle\cdot\langle y,y\rangle$$
+    \item \textbf{Для случая векторов с $n$ координатами:}
+    $$\left(\sum_{k=1}^{n}x_{k}y_{k}\right)^{2}\le\left(\sum_{k=1}^{n}x_{k}^{2}\right)\cdot\left(\sum_{k=1}^{n}y_{k}^{2}\right)$$
+\end{itemize}
+
+\section{Неравенство Юнга.}
+
+\begin{itemize}
+    \item \textbf{Теорема 2 (неравенство Юнга):} Пусть $a, b>0,$ а числа $p, q>1$ такие, что $\frac{1}{p}+\frac{1}{q}=1$. Тогда верно:
+    $$ab\le\frac{a^{p}}{p}+\frac{b^{q}}{q}$$
+\end{itemize}
+
+\section{Неравенство Гёльдера.}
+
+\begin{itemize}
+    \item \textbf{Теорема 3 (неравенство Гёльдера):} Рассмотрим наборы положительных чисел $x_{1},\ldots,x_{n},y_{1},\ldots,y_{n},$ а также числа $p, q>1$ такие, что $\frac{1}{p}+\frac{1}{q}=1$. Тогда верно:
+    $$\sum_{k=1}^{n}x_{k}y_{k}\le\left(\sum_{k=1}^{n}x_{k}^{p}\right)^{1/p}\cdot\left(\sum_{k=1}^{n}y_{k}^{q}\right)^{1/q}$$
+\end{itemize}
+
+\section{Неравенство Минковского.}
+
+\begin{itemize}
+    \item \textbf{Теорема 4 (неравенство Минковского):} Рассмотрим наборы положительных чисел $x_{1},\ldots,x_{n},y_{1},\ldots,y_{n},$ $p\ge1$. Тогда верно:
+    $$\left(\sum_{k=1}^{n}(x_{k}+y_{k})^{p}\right)^{1/p}\le\left(\sum_{k=1}^{n}x_{k}^{p}\right)^{1/p}+\left(\sum_{k=1}^{n}y_{k}^{p}\right)^{1/p}$$
+\end{itemize}
+
+\section{Классификация точек множеств (внутренняя, внешняя, граничная, предельная, изолированная)}
+
+Пусть $U(x)$ — окрестность точки $x$, а $\tilde{U}(x)=U(x)\setminus\{x\}$ — проколотая окрестность точки $x$.
+
+\begin{itemize}
+    \item $x$ — \textbf{внутренняя точка} множества $A$, если $\exists U(x):U(x)\subset A$.
+    \item $x$ — \textbf{внешняя точка} множества $A$, если $\exists U(x):U(x)\cap A=\emptyset$.
+    \item $x$ — \textbf{граничная точка} множества $A$, если $\forall U(x):U(x)\cap A\ne\emptyset\wedge U(x)\cap(X\backslash A)\ne\emptyset$.
+    \item $x$ — \textbf{предельная точка} множества $A$, если $\forall U(x):\tilde{U}(x)\cap A\ne\emptyset$.
+    \item $x$ — \textbf{изолированная точка} множества $A$, если $\exists U(x):U(x)\cap A=\{x\}$.
+    \item \textbf{Замыкание множества $A$:} $\overline{A}=A\cup A^{\prime}$.
+\end{itemize}
+
+\section{Понятие компакта. Доказательство леммы, что брус компакт.}
+
+\begin{itemize}
+    \item \textbf{Понятие компакта (Определение 6):} Множество $K$ называется \textbf{компактом} в метрическом пространстве, если из любого покрытия $K$ множествами, открытыми в $X$, можно выделить конечное покрытие $K$.
+    \item \textbf{Лемма 2. Брус – компакт.} Используется метод деления бруса пополам (по каждой координате), построение системы вложенных брусьев, стягивающихся к точке $\xi$, и доказательство того, что $\xi$ должна быть покрыта конечным числом множеств, что приводит к противоречию.
+\end{itemize}
+
+\section{Диаметр множества. Ограниченные множества.}
+
+\begin{itemize}
+    \item \textbf{Диаметр множества (Определение 7):} \textbf{Диаметр множества} $E \subset \mathbb{R}^n$ есть величина $d(E) = \sup_{x,y\in E} \rho(x, y)$.
+    \item \textbf{Ограниченное множество (Определение 8):} Множество называется \textbf{ограниченным}, если его диаметр конечен.
+\end{itemize}
+
+\section{Леммы про компактные множества}
+
+\begin{itemize}
+    \item \textbf{Лемма 3 (1):} \textbf{Компакт является замкнутым ограниченным множеством}.
+    \item \textbf{Лемма 3 (3):} \textbf{Замкнутое подмножество компакта – компакт}.
+    \item \textbf{Лемма 3 (4):} \textbf{Всякое бесконечное подмножество компакта имеет предельную точку, принадлежащую компакту}.
+\end{itemize}
+
+\section{Критерий компактности.}
+
+\begin{itemize}
+    \item \textbf{Теорема 5 (Критерий компактности):} $K \subset \mathbb{R}^n$ \textbf{тогда и только тогда, когда} $K$ – \textbf{замкнуто и ограничено}.
+\end{itemize}
+
+\section{Предел функции по базе. Определение предела в метрических пространствах.}
+
+\begin{itemize}
+    \item \textbf{Предел функции по базе (Определение 9):} Число $A \in \mathbb{R}^n$ называется \textbf{пределом при базе $\mathbb{B}$}:
+    $$\lim_{\mathbb{B}}f(x) = A := \forall V(A) \exists B \in \mathbb{B} f(B) \subset V(A)$$
+    \item \textbf{Определение предела в метрических пространствах (через $\epsilon-\delta$):}
+    $$\lim_{x\rightarrow a}f(x)=A:=\forall\epsilon>0\exists\delta>0\forall x~0<|x-a|<\delta|f(x)-A|<\epsilon$$
+\end{itemize}
+
+\section{Фундаментальные последовательности в $\mathbb{R}^{n}$. Полные метрические пространства. Примеры...}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Определения \textbf{фундаментальной последовательности} и \textbf{полного метрического пространства} \textbf{отсутствуют} в предоставленном конспекте.
+
+\section{Колебание функции на множестве.}
+
+\begin{itemize}
+    \item \textbf{Определение 11. Колебанием функции} $f: X \rightarrow \mathbb{R}^n$ \textbf{на множестве} $E \subset X$ называется величина:
+    $$\omega(f, E) = \sup_{x,y \in E} \rho(f(x), f(y))$$
+\end{itemize}
+
+\section{Критерий Коши в терминах колебаний.}
+
+\begin{itemize}
+    \item \textbf{Теорема 6 (Критерий Коши в терминах колебаний):} Предел функции $\lim_{\mathbb{B}} f(x)$ существует тогда и только тогда, когда:
+    $$\exists \lim_{\mathbb{B}} f(x) \iff \forall \epsilon > 0 \exists B \in \mathbb{B}: \omega(f, B) < \epsilon$$
+\end{itemize}
+
+\section{Предел композиции отображений.}
+
+\begin{itemize}
+    \item \textbf{Теорема 7 (Предел композиции):} При условиях, что $f$ отображает базу $\mathbb{B}_X$ в базу $\mathbb{B}_Y$, и оба предела существуют:
+    $$\lim_{\mathbb{B}_X}(g \circ f)(x) = \lim_{\mathbb{B}_Y}(g)(y)$$
+\end{itemize}
+
+\section{Повторные пределы.}
+
+\begin{itemize}
+    \item \textbf{Повторные пределы} — это пределы, которые вычисляются последовательно по каждой из координат.
+    \item \textbf{Важный вывод:} Существование и равенство повторных пределов \textbf{не гарантирует} существование предела функции по базе.
+\end{itemize}
+
+\section{Непрерывность отображений. Эквивалентные определения.}
+
+\begin{itemize}
+    \item \textbf{Определение 13. Непрерывность в точке:} Функция $f : X \rightarrow Y$ \textbf{непрерывна в точке} $a \in X$, если:
+    $$\forall V(f(a)) \exists U(a) f(U(a)) \subset V(f(a))$$
+    \item \textbf{Эквивалентные определения:}
+    \begin{enumerate}
+        \item \textbf{По базе:} $\lim_{\mathbb{B}} f(x) = f(a)$.
+        \item \textbf{По последовательностям (Гейне):} Для любой последовательности $x_n \rightarrow a$ верно, что $f(x_n) \rightarrow f(a)$.
+        \item \textbf{Через открытые множества (Теорема 8):} $\forall G \in \tau_Y$, $f^{-1}(G) \in \tau_X$ (\textbf{прообраз любого открытого множества открыт}).
+    \end{enumerate}
+\end{itemize}
+
+\section{Локальные свойства непрерывности (ограниченность, знакопостоянство).}
+
+\begin{itemize}
+    \item \textbf{Теорема 9 (Локальные свойства непрерывности):} Пусть $f$ непрерывна в точке $a \in X$.
+    \begin{enumerate}
+        \item \textbf{Локальная ограниченность:} $\exists U(a) \subset X: f(U(a))$ ограничено.
+        \item \textbf{Локальное знакопостоянство:} Если $f(a) \ne 0$, то $\exists U(a): \forall x \in U(a) f(x) \ne 0$.
+    \end{enumerate}
+\end{itemize}
+
+\section{Глобальные свойства непрерывности (непрерывный образ компакта - компакт, теорема Больцано-Коши).}
+
+\begin{itemize}
+    \item \textbf{Теорема 10 (Глобальные свойства непрерывности):}
+    \begin{enumerate}
+        \item \textbf{Теорема Вейерштрасса 1 (Об образе компакта):} Непрерывный образ компакта – компакт.
+        \item \textbf{Теорема Больцано-Коши (О промежуточном значении):} Пусть $K \subset X$ \textbf{связное множество}, а $f: K \rightarrow \mathbb{R}$ непрерывна. Тогда $f(K)$ – \textbf{связное множество} (т.е. функция принимает все промежуточные значения).
+    \end{enumerate}
+\end{itemize}
+
+\section{Равномерная непрерывность отображений. Теорема Кантора.}
+
+\begin{itemize}
+    \item \textbf{Равномерная непрерывность (Определение 19):} Функция называется \textbf{равномерно непрерывной на $E$}, если $\forall\epsilon>0 \exists\delta>0 \forall x, y \in X : \rho(x, y) < \delta \implies \rho(f(x), f(y)) < \epsilon$.
+    \item \textbf{Теорема Кантора:} Строгая формулировка теоремы о равномерной непрерывности на компакте \textbf{отсутствует} в конспекте.
+\end{itemize}
+
+\section{Класс функций $C^k$.}
+
+\begin{itemize}
+    \item \textbf{Функция класса $C^1$:} Это функция, для которой частные производные $\frac{\partial f_j}{\partial x_k}$ \textbf{непрерывны}.
+    \item \textbf{Функция класса $C^k$:} Функция $f$ называется \textbf{$k$ раз дифференцируемой} в шаре $B(a, r)$. (Общее определение класса $C^k$ \textbf{отсутствует}).
+\end{itemize}
+
+\section{Представление линейного отображения в $\mathbb{R}^{n}$.}
+
+Действие линейного отображения $f$ на вектор $x$ можно представить в виде $Lx$, где $L$ – \textbf{матрица линейного оператора}.
+
+\section{Представление линейной функции через скалярное произведение.}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Конкретная формула представления линейной функции через скалярное произведение $\langle a, x \rangle$ \textbf{отсутствует} в конспекте.
+
+\section{$o$-малое и $O$-большое для функций на $\mathbb{R}^{n}$.}
+
+\begin{itemize}
+    \item \textbf{$O$-большое (Определение 25):} $\alpha(x)=O(\beta(x))$ при $x\rightarrow a$, если $\exists M>0 \exists U(a) \forall x\in U(a): \frac{|\alpha(x)|}{|\beta(x)|}\le M$.
+    \item \textbf{$o$-малое (Определение 26):} $\alpha(x)=o(\beta(x))$ при $x\rightarrow a$, если $\lim_{x\rightarrow a}\frac{\alpha(x)}{\beta(x)}=0$.
+\end{itemize}
+
+\section{Лемма про линейный оператор $L(h)=O(h)$.}
+
+\begin{itemize}
+    \item \textbf{Лемма 8:} $\forall h: |h| < \delta$ (in $\mathbb{R}^m$) верно, что $L(h)=O(h)$.
+\end{itemize}
+
+\section{Дифференцируемая функция в точке. Дифференциал. Дифференциал как функция между касательными пространствами.}
+
+\begin{itemize}
+    \item \textbf{Дифференцируемая функция в точке (Определение 27):} Функция $f: X \rightarrow \mathbb{R}^n$ \textbf{дифференцируема в точке $a \in X$}, если при $h \rightarrow 0$ верно разложение:
+    $$f(a+h) - f(a) = L(h) + o(\rho(h, 0))$$
+    где $L$ — \textbf{линейное отображение} $\mathbb{R}^m \rightarrow \mathbb{R}^n$.
+    \item \textbf{Дифференциал (Определение 28):} \textbf{Дифференциалом} функции $f$ в точке $a$ называется линейная часть $L(h)$ из разложения. Обозначается $df(a, h)$.
+    \item \textbf{Дифференциал как функция между пространствами:} Дифференциал $L$ является \textbf{линейным отображением} $\mathbb{R}^m \rightarrow \mathbb{R}^n$.
+\end{itemize}
+
+\section{Лемма о дифференцировании покоординатно.}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Строгая формулировка леммы \textbf{отсутствует} в конспекте.
+
+\textbf{Концепция:} $f: \mathbb{R}^m \rightarrow \mathbb{R}^n$ дифференцируема в точке $a$ тогда и только тогда, когда каждая ее координатная функция $f_j: \mathbb{R}^m \rightarrow \mathbb{R}$ дифференцируема в точке $a$.
+
+\section{Представление полного дифференциала. Частные производные. Матрица Якоби.}
+
+\begin{itemize}
+    \item \textbf{Полный дифференциал:} $df(a, h)$ — линейная часть $L(h)$.
+    \item \textbf{Матрица Якоби:} Линейное отображение $L$ представляется с помощью \textbf{матрицы Якоби} $J_f(a)$:
+    $$J_f(a) = \begin{pmatrix} \frac{\partial f_1}{\partial x_1}(a) & \cdots & \frac{\partial f_1}{\partial x_m}(a) \\ \vdots & \ddots & \vdots \\ \frac{\partial f_n}{\partial x_1}(a) & \cdots & \frac{\partial f_n}{\partial x_m}(a) \end{pmatrix}$$
+    \item \textbf{Связь:} $df(a, h) = J_f(a) \cdot h$.
+\end{itemize}
+
+\section{Связь непрерывности и дифференцируемости.}
+
+\begin{itemize}
+    \item \textbf{Теорема (Необходимое условие дифференцируемости):} Если функция $f$ \textbf{дифференцируема} в точке $a$, то она \textbf{непрерывна} в этой точке.
+    \item \textbf{Обратное неверно.}
+\end{itemize}
+
+\section{Правила дифференцирования (сумма, произведение, частное).}
+
+\begin{itemize}
+    \item \textbf{Линейность дифференциала (Теорема 9.1):}
+    \begin{itemize}
+        \item $d(f+g)(a) = df(a) + dg(a)$.
+        \item $d(\lambda f)(a) = \lambda d f(a)$.
+    \end{itemize}
+    \item \textbf{Дифференцирование произведения/частного:} Правила дифференцирования произведения и частного для ФНП \textbf{отсутствуют} в конспекте.
+\end{itemize}
+
+\section{Дифференцирование композиции. Матричное представление производной композиции.}
+
+\begin{itemize}
+    \item \textbf{Теорема 10 (о дифференцировании композиции):} Если $f$ дифференцируема в $a$, а $g$ дифференцируема в $f(a)$, то композиция $h = g \circ f$ дифференцируема в $a$.
+    \item \textbf{Матричное представление (Цепное правило):} Матрица Якоби композиции равна произведению матриц Якоби:
+    $$J_{h}(a) = J_{g}(f(a)) \cdot J_{f}(a)$$
+\end{itemize}
+
+\section{Производная по направлению. Градиент.}
+
+\begin{itemize}
+    \item \textbf{Производная по направлению (Определение 29):}
+    $$\frac{\partial f}{\partial e}(a) = \lim_{t\rightarrow 0} \frac{f(a+te) - f(a)}{t}$$
+    \item \textbf{Градиент (Определение 30):}
+    $$\nabla f(a) = \text{grad} f(a) = \left( \frac{\partial f}{\partial x_1}(a), \ldots, \frac{\partial f}{\partial x_n}(a) \right)$$
+    \item \textbf{Связь (для дифференцируемой $f$):} $\frac{\partial f}{\partial e}(a) = \langle \nabla f(a), e \rangle$.
+\end{itemize}
+
+\section{Достаточное условие дифференцируемости.}
+
+\begin{itemize}
+    \item \textbf{Теорема 11 (Достаточное условие):} Если функция $f: \mathbb{R}^m \rightarrow \mathbb{R}^n$ имеет в окрестности точки $a$ \textbf{частные производные} $\frac{\partial f_j}{\partial x_k}$, и они \textbf{непрерывны} в точке $a$ (т.е. $f \in C^1$), то функция $f$ \textbf{дифференцируема} в точке $a$.
+\end{itemize}
+
+\section{Дифференцирование обратной функции.}
+
+\begin{itemize}
+    \item \textbf{Теорема 11 (о дифференцировании обратной функции):} Если $f$ — гомеоморфизм, дифференцируема в $a$, и ее дифференциал $df$ имеет \textbf{непрерывный обратный} $df^{-1}$, то обратная функция $f^{-1}$ дифференцируема в $f(a)$, и:
+    $$d(f^{-1}) = (df)^{-1}$$
+\end{itemize}
+
+\section{Сжимающее отображение. Теорема Банаха.}
+
+\begin{itemize}
+    \item \textbf{Определение 32 (Сжимающее отображение):} Отображение $F : X \rightarrow X$ (где $(X, \rho)$ – \textbf{полное метрическое пространство}) называется \textbf{сжимающим с параметром сжатия $q$}, если $\exists q \in (0, 1) \forall x_1, x_2 \in X$:
+    $$\rho(F(x_1), F(x_2)) \le q \rho(x_1, x_2)$$
+    \item \textbf{Теорема 12 (Теорема Банаха о неподвижной точке):} Если $(X, \rho)$ — \textbf{полное метрическое пространство} и $F : X \rightarrow X$ $q$-сжимающее отображение, то \textbf{существует и единственна} точка $a \in X$ (неподвижная точка) такая, что $F(a) = a$.
+\end{itemize}
+
+\section{Вспомогательная лемма (а-ля теорема Лагранжа для ФНП).}
+
+\begin{itemize}
+    \item \textbf{Концепция (Неравенство о среднем значении):} В многомерном случае используется идея применения теоремы Лагранжа для функции одной переменной к каждой координате.
+    $$\Delta f = \sum_{i=1}^n \frac{\partial f}{\partial x_i}(\mathbf{c}_i) h_i$$
+    где $\mathbf{c}_i$ — некоторые промежуточные точки.
+\end{itemize}
+
+\section{Теорема об обратной функции.}
+
+\begin{itemize}
+    \item \textbf{Формулировка:} Если $f \in C^1$ в окрестности $a$ и $\det J_f(a) \ne 0$, то существует окрестность $U$ точки $a$, в которой $f$ имеет \textbf{непрерывно дифференцируемую обратную функцию} $f^{-1}$.
+\end{itemize}
+
+\section{Теорема о неявном отображении.}
+
+\begin{itemize}
+    \item \textbf{Формулировка:} Пусть $F(x, y) = 0$, $F \in C^1$. Если $\det \left( \frac{\partial F}{\partial y}(a, b) \right) \ne 0$, то в окрестности $a$ существует \textbf{единственная} \textbf{непрерывно дифференцируемая} функция $y = f(x)$, удовлетворяющая уравнению $F(x, f(x)) = 0$.
+\end{itemize}
+
+\section{Функционально независимый набор функций.}
+
+\begin{itemize}
+    \item \textbf{Определение:} Набор функций $f_1, \ldots, f_k$ называется \textbf{функционально независимым} на $D$, если он не является функционально зависимым (т.е. не существует нетривиальной функции $\Phi$ такой, что $\Phi(f_1(\mathbf{x}), \ldots, f_k(\mathbf{x})) = 0$).
+\end{itemize}
+
+\section{Теорема о функциональной независимости. Случай для $\mathbb{R}^{n}$ на уровне алгебраического объяснения формулировки.}
+
+\begin{itemize}
+    \item \textbf{Теорема:} Если $f_1, \ldots, f_k$ непрерывно дифференцируемы, то они \textbf{функционально независимы} в окрестности $a$ тогда и только тогда, когда \textbf{ранг} матрицы, составленной из их градиентов, равен $k$.
+    \item \textbf{Алгебраическое объяснение для случая $k=n$:} Функциональная независимость эквивалентна тому, что \textbf{определитель Якобиана} $\det J_f(a)$ \textbf{не равен нулю} (т.е. матрица Якоби невырождена).
+\end{itemize}
+
+\section{Производные высокого порядка.}
+
+\begin{itemize}
+    \item \textbf{Смешанная производная второго порядка} определяется так:
+    $$\frac{\partial^2 f}{\partial x_i \partial x_j} = \frac{\partial}{\partial x_i} \left( \frac{\partial f}{\partial x_j} \right)$$
+    \item \textbf{Смешанная производная порядка $k$} определяется аналогично последовательным дифференцированием.
+\end{itemize}
+
+\section{Теорема Шварца.}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Строгая формулировка \textbf{отсутствует}.
+
+\textbf{Концепция:} Если смешанные частные производные $\frac{\partial^2 f}{\partial x_i \partial x_j}$ и $\frac{\partial^2 f}{\partial x_j \partial x_i}$ \textbf{непрерывны} в точке $a$, то они \textbf{равны} в этой точке.
+
+\section{Теорема Юнга.}
+
+\textcolor{red}{\textbf{ВНИМАНИЕ:}} Строгая формулировка \textbf{отсутствует}.
+
+\textbf{Концепция:} Если функция $f \in C^k$, то результат $k$-кратного дифференцирования не зависит от порядка, в котором берутся частные производные.
+
+\section{Формула Тейлора.}
+
+\begin{itemize}
+    \item \textbf{Дифференциал порядка $k$:}
+    $$d^k f(a, \mathbf{h}) = \sum_{i_1, \ldots, i_k=1}^n \frac{\partial^k f}{\partial x_{i_1} \cdots \partial x_{i_k}}(a) h_{i_1} \cdots h_{i_k}$$
+    \item \textbf{Формула Тейлора (остаток в форме Лагранжа):}
+    $$f(a+\mathbf{h}) = f(a) + \sum_{k=1}^m \frac{1}{k!} d^k f(a, \mathbf{h}) + \frac{1}{(m+1)!} d^{m+1} f(\mathbf{c}, \mathbf{h})$$
+    где $\mathbf{c} \in (a, a+\mathbf{h})$.
+\end{itemize}
+
+\section{Локальный экстремум.}
+
+\begin{itemize}
+    \item \textbf{Локальный минимум:} $f(\mathbf{x})$ имеет \textbf{локальный минимум} в $\mathbf{x}_0$, если $\exists U(\mathbf{x}_0): \forall \mathbf{x} \in U(\mathbf{x}_0) f(\mathbf{x}) \ge f(\mathbf{x}_0)$.
+    \item \textbf{Локальный максимум:} $f(\mathbf{x})$ имеет \textbf{локальный максимум} в $\mathbf{x}_0$, если $\exists U(\mathbf{x}_0): \forall \mathbf{x} \in U(\mathbf{x}_0) f(\mathbf{x}) \le f(\mathbf{x}_0)$.
+\end{itemize}
+
+\section{Необходимое условие локального экстремума. Достаточное условие локального экстремума.}
+
+\begin{itemize}
+    \item \textbf{Необходимое условие (Теорема Ферма):} Если $f$ имеет локальный экстремум в точке $\mathbf{a}$ и дифференцируема, то ее \textbf{градиент} в этой точке равен нулю:
+    $$\nabla f(\mathbf{a}) = \mathbf{0}$$
+    \item \textbf{Достаточное условие (Матрица Гессе $H(\mathbf{a})$):} Пусть $\mathbf{a}$ — стационарная точка.
+    \begin{enumerate}
+        \item Если $d^2 f(\mathbf{a}, \mathbf{h})$ \textbf{положительно определен} ($H(\mathbf{a})$ положительно определена), то $\mathbf{a}$ — \textbf{локальный минимум}.
+        \item Если $d^2 f(\mathbf{a}, \mathbf{h})$ \textbf{отрицательно определен}, то $\mathbf{a}$ — \textbf{локальный максимум}.
+        \item Если $d^2 f(\mathbf{a}, \mathbf{h})$ \textbf{знакопеременный}, то $\mathbf{a}$ — \textbf{седловая точка} (экстремума нет).
+    \end{enumerate}
+\end{itemize}
+
+\section{Условный экстремум. Необходимое условие условного экстремума.}
+
+\section{Правило множителей Лагранжа.}
+
+\begin{itemize}
+    \item \textbf{Условный экстремум:} Экстремум функции $f(\mathbf{x})$ при условиях (связях) $g_i(\mathbf{x}) = 0$.
+    \item \textbf{Функция Лагранжа:}
+    $$L(\mathbf{x}, \boldsymbol{\lambda}) = f(\mathbf{x}) + \sum_{i=1}^m \lambda_i g_i(\mathbf{x})$$
+    \item \textbf{Необходимое условие (Правило множителей Лагранжа):} Если $\mathbf{a}$ — точка условного экстремума, то должны существовать множители $\boldsymbol{\lambda}$ такие, что \textbf{градиент} функции Лагранжа по всем переменным равен нулю:
+    $$\nabla L(\mathbf{a}, \boldsymbol{\lambda}) = \mathbf{0}$$
+    (т.е. все частные производные $L$ по $x_j$ и $\lambda_i$ равны нулю).
+\end{itemize}
+
+\end{document}
